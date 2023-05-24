@@ -1,0 +1,55 @@
+<h2>Dublin Scioto Stadium</h2>
+<div class="carousel-container">
+  <div class="hero">
+    <ngx-slick-carousel class="slider-for"
+                        #slickModal="slick-carousel"
+                        [config]="slideConfig"
+                        (init)="slickInit($event)"
+                        (breakpoint)="breakpoint($event)"
+                        (afterChange)="afterChange($event)"
+                        (beforeChange)="beforeChange($event)">
+
+      <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+        <img src="{{ slide.img }}" alt="" width="250px">
+      </div>
+    </ngx-slick-carousel>
+
+  </div>
+
+
+
+
+  <ngx-slick-carousel class="slider-nav"
+                      [config]="slideNavConfig"
+                      (init)="slickInit($event)"
+                      (breakpoint)="breakpoint($event)"
+                      (afterChange)="afterChange($event)"
+                      (beforeChange)="beforeChange($event)">
+    <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+      <img src="{{ slide.img }}" alt="" width="250px">
+    </div>
+  </ngx-slick-carousel>
+</div>
+
+<p>
+  Address Map Link: <a target="_new" href="https://www.google.com/maps/search/dublin+scioto+football+field/@40.1223114,-83.1005981,16.19z">
+  4000 Hard Road -- Dublin, Ohio 43016</a> <br>
+  Dublin Scioto Stadium: <a target="_new" href="https://weather.com/weather/today/l/43016:4:US">Local Weather Conditions</a><br>
+  Owner: Dublin City Schools<br>
+  County: Franklin<br>
+  Seating Capacity: 5000<br>
+  Stadium Type: High School<br>
+  Year Opened: 1995<br>
+  Football: Yes<br>
+  Track: Yes<br>
+  Soccer: Yes<br>
+  Lacrosse: Yes <br>
+  Video Scoreboard: No<br>
+  Press Box Elevator: No<br>
+  Wheelchair Access: Good<br>
+  Playing Surface: Artificial<br>
+  Home Teams:<br>
+  Dublin Scioto Irish
+
+</p>
+

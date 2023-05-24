@@ -1,0 +1,21 @@
+.page-wrapper {
+  display: flex;
+  flex-direction: row;
+  border: solid 1px red;
+
+  .col-1 {
+    width: calc(100% - 300px);
+  }
+
+  .col-2 {
+    width: 300px;
+
+    ngx-twitter-timeline{
+      border: solid 1px yellow;
+      max-height: calc(100vh - 174px);
+      overflow-y: auto;
+      display: block;
+    }
+  }
+
+}

@@ -1,0 +1,47 @@
+<h1>Dublin Scioto Football</h1>
+
+
+<section class="page-wrapper">
+
+  <div class="col-1">
+    <section>
+      <h2>Announcements</h2>
+      <ul>
+        <li *ngFor="let announcement of _announcementData">
+          <h3>{{announcement.headline}}</h3>
+          <p>
+            {{announcement.body}}
+          </p>
+          <p>
+            {{announcement.startDate}} - {{announcement.endDate}}
+          </p>
+        </li>
+      </ul>
+    </section>
+
+
+    <section>
+      <h2>Sponsors</h2>
+      <ul>
+        <li *ngFor="let sponsor of _sponsorData">
+          <h3>{{sponsor.name}}</h3>
+
+          <p>
+            {{sponsor.link}} - {{sponsor.contact}}
+          </p>
+        </li>
+      </ul>
+    </section>
+
+  </div>
+
+  <div class="col-2">
+        <ngx-twitter-timeline
+          [data]="{sourceType: 'url', url: 'https://twitter.com/sciotofootball'}"
+          [opts]="{tweetLimit: 5}"
+        ></ngx-twitter-timeline>
+  </div>
+
+</section>
+
+

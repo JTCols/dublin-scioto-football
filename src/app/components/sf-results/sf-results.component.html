@@ -1,0 +1,18 @@
+<ul class="sub-nav">
+  <li (click)="loadVarsity()">Varsity</li>
+  <li (click)="loadJV()">J.V.</li>
+  <li (click)="loadFrosh()">Freshman</li>
+</ul>
+
+
+<ag-grid-angular
+  style="width: calc(100% - 10px); height: calc(100% - 30px)"
+  class="ag-theme-alpine"
+  [columnDefs]="columnDefs"
+  [defaultColDef]="defaultColDef"
+  [rowData]="_resultData"
+  [rowSelection]="'multiple'"
+  [animateRows]="true"
+  (gridReady)="onGridReady($event)"
+></ag-grid-angular>
+<!--  (cellClicked)="onCellClicked($event)"-->

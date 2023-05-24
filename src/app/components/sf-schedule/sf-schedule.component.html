@@ -1,0 +1,16 @@
+
+<h2>2023 Schedule</h2>
+
+<ul class="sub-nav">
+  <li (click)="loadVarsity()">Varsity</li>
+  <li (click)="loadJV()">J.V.</li>
+  <li (click)="loadFrosh()">Freshman</li>
+</ul>
+
+
+
+<ul class="navigation">
+  <li *ngFor="let game of _resultData" >
+    <span class="link-title">{{game.opponent}}</span>
+  </li>
+</ul>

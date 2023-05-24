@@ -1,0 +1,20 @@
+<ul class="storied-rivals">
+  <li *ngFor="let item of storiedRivalsJSON" (click)="openYouTube(item.snippet.resourceId.videoId)">
+
+    <h3 class="link-title">{{item.snippet.publishedAt | date }}: {{item.snippet.title }} </h3>
+    <div class="rivals-item">
+
+      <span class="link-thumb">
+        <img src="{{item.snippet.thumbnails.medium.url }}">
+      </span>
+
+      <span class="link-Description">
+        {{item.snippet.description }}
+      </span>
+
+    </div>
+
+  </li>
+</ul>
+
+

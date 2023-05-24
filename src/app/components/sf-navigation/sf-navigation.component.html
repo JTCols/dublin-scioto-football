@@ -1,0 +1,10 @@
+
+<ul class="navigation">
+  <li *ngFor="let navItem of _navData.navData" (click)="loadPageComponent(navItem?.route)">
+    <div class="nav-item">
+      <mat-icon class="material-symbols-outlined">{{navItem.icon}}</mat-icon>
+      <div class="link-title">{{navItem.title}}</div>
+    </div>
+  </li>
+</ul>
+

@@ -1,0 +1,58 @@
+:host {
+
+}
+
+.sf-main-content {
+  grid-area: content;
+  position: relative;
+  border: solid 1px yellow;
+}
+
+.sf-footer {
+  grid-area: footer;
+  border: solid 1px green;
+}
+
+.sf-header {
+  grid-area: header;
+  background-color: black;
+  border: solid 1px purple;
+}
+
+.sf-navigation {
+  grid-area: sidebar;
+  transition: width .75s;
+  display: flex;
+  transition-timing-function: ease-in;
+  background-color: #ccc;
+  width: 100%;
+  //height: 100%;
+}
+
+
+article {
+  display: grid;
+  min-height: 100vh;
+  width: 100%;
+  grid-gap: 1px;
+  grid-template-columns: 200px auto;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header header "
+    "sidebar content"
+    "footer footer";
+  border: solid 1px blue;
+  transition: grid-template-columns .75s;
+}
+
+
+@media (max-width: 501px) {
+  .sf-navigation {
+    width: 40px;
+    transition-timing-function: ease-out;
+  }
+  article {
+    grid-template-columns: 40px auto;
+  }
+
+}

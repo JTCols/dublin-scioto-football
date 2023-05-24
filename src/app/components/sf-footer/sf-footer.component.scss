@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  background-color: black;
+  color: white;
+
+  .footer-links {
+    display: flex;
+    list-style-type: none;
+    padding: 0 10px;
+    max-width: 380px;
+    margin: 0 auto;
+    height: 40px;
+
+
+    a {
+      color: white;
+      padding: 10px;
+    }
+
+  }
+
+}
+
+
+
