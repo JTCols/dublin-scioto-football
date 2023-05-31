@@ -29,6 +29,7 @@ import {SlickCarouselModule} from "ngx-slick-carousel";
 import {SfResultsComponent} from './components/sf-results/sf-results.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
+import {NgImageSliderModule} from "ng-image-slider";
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import {MatButtonModule} from "@angular/material/button";
     NgxTwitterTimelineModule,
     SlickCarouselModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    NgImageSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

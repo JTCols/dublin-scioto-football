@@ -1,34 +1,15 @@
 <h2>Dublin Scioto Stadium</h2>
 <div class="carousel-container">
-  <div class="hero">
-    <ngx-slick-carousel class="slider-for"
-                        #slickModal="slick-carousel"
-                        [config]="slideConfig"
-                        (init)="slickInit($event)"
-                        (breakpoint)="breakpoint($event)"
-                        (afterChange)="afterChange($event)"
-                        (beforeChange)="beforeChange($event)">
-
-      <div ngxSlickItem *ngFor="let slide of slides" class="slide">
-        <img src="{{ slide.img }}" alt="" width="250px">
-      </div>
-    </ngx-slick-carousel>
-
-  </div>
-
-
-
-
-  <ngx-slick-carousel class="slider-nav"
-                      [config]="slideNavConfig"
-                      (init)="slickInit($event)"
-                      (breakpoint)="breakpoint($event)"
-                      (afterChange)="afterChange($event)"
-                      (beforeChange)="beforeChange($event)">
-    <div ngxSlickItem *ngFor="let slide of slides" class="slide">
-      <img src="{{ slide.img }}" alt="" width="250px">
-    </div>
-  </ngx-slick-carousel>
+  <ng-image-slider
+    [images]="imageObject"
+    [infinite]="true"
+    [autoSlide]="{interval: 3, stopOnHover: false}"
+    [imagePopup]="true"
+    [showArrow]="true"
+    [manageImageRatio]="true"
+    [imageSize]="{ width: '33%', space: 10}"
+    #nav>
+  </ng-image-slider>
 </div>
 
 <p>

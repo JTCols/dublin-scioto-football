@@ -1,6 +1,6 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
 import {AgGridAngular} from "ag-grid-angular";
-import {CellClickedEvent, ColDef, GridReadyEvent} from "ag-grid-community";
+import {CellClickedEvent, ColDef, GridApi, GridReadyEvent} from "ag-grid-community";
 import {SfApiService} from "../../services/api/sf-api.service";
 
 @Component({
@@ -8,12 +8,16 @@ import {SfApiService} from "../../services/api/sf-api.service";
   templateUrl: './sf-roster.component.html',
   styleUrls: ['./sf-roster.component.scss']
 })
-export class SfRosterComponent {
+
+export class SfRosterComponent implements OnInit {
 
   // For accessing the Grid's API
   @ViewChild(AgGridAngular) agGrid!: AgGridAngular;
 
   public _rosterData: any[] = [];
+  private resizeObserver: ResizeObserver;
+
+  //private gridApi!: GridApi<any>;
 
   // Each Column Definition results in one Column.
   public columnDefs: ColDef[] = [
@@ -24,7 +28,7 @@ export class SfRosterComponent {
     {field: 'height'},
     {field: 'weight'},
     {field: 'position'},
-    {field: 'role'},
+    // {field: 'role'},
     {field: 'season'},
 
   ];
@@ -35,7 +39,37 @@ export class SfRosterComponent {
     filter: true,
   };
 
-  constructor(private apiService: SfApiService) {
+  constructor(private apiService: SfApiService, private host: ElementRef, private zone: NgZone) {
+  }
+
+
+  ngOnInit() {
+    this.resizeObserver = new ResizeObserver(entries => {
+      const width = entries[0].contentRect.width;
+      console.log(width);
+      this.zone.run(() => {
+        this.sizeToFit()
+      });
+    });
+    this.resizeObserver.observe(this.host.nativeElement);
+  }
+
+  ngOnDestroy() {
+    this.resizeObserver.unobserve(this.host.nativeElement);
+  }
+
+  sizeToFit() {
+    this.agGrid.api.sizeColumnsToFit({
+      defaultMinWidth: 50,
+      columnLimits: [
+        {key: 'number', maxWidth: 55},
+        {key: 'firstName', minWidth: 100},
+        {key: 'lastName', minWidth: 100},
+        {key: 'grade', maxWidth: 95},
+        {key: 'height', maxWidth: 100},
+        {key: 'weight', maxWidth: 100}
+      ],
+    });
   }
 
 
@@ -63,6 +97,8 @@ export class SfRosterComponent {
     this.apiService.getRoster().subscribe(response => {
       if (response.values && response.values.length > 1) {
         this.processRosterData(response.values, params.api)
+
+        this.sizeToFit();
       }
     });
   }

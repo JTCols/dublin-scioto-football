@@ -1,9 +1,9 @@
-:host{
+:host {
 
-  .header-container{
-    display:flex;
+  .header-container {
+    display: flex;
     flex-direction: row;
-    width : 100%;
+    width: 100%;
     border-bottom: solid 1px #ccc;
     min-height: 350px;
     max-height: 350px;
@@ -12,33 +12,42 @@
     background-position: center 40px;
     background-repeat: no-repeat;
     background-size: 100% 350px;
+    color: white;
 
-    img{
+    img.header-logo {
       height: 120px;
       width: auto;
       margin: 4px auto;
     }
 
-    .header-buttons{
-      margin-left: auto;
-      a{
-        display: inline-block;
-        width: 100px;
-      }
-      .menu-button{
-        color: white;
-      }
-    }
+    .menu-button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: none;
 
+    }
 
   }
 
-  .banner-message{
+  .banner-message {
     background-color: black;
     color: #1F8441;
     padding: 10px 0;
     text-align: center;
     border-top: solid 10px #1F8441;
     border-bottom: solid 10px #1F8441;
+  }
+}
+
+
+@media (max-width: 800px) {
+
+  :host {
+    .header-container {
+      .menu-button {
+        display: block;
+      }
+    }
   }
 }

@@ -4,7 +4,7 @@
 <section class="page-wrapper">
 
   <div class="col-1">
-    <section>
+    <section class="announcements">
       <h2>Announcements</h2>
       <ul>
         <li *ngFor="let announcement of _announcementData">
@@ -13,33 +13,61 @@
             {{announcement.body}}
           </p>
           <p>
-            {{announcement.startDate}} - {{announcement.endDate}}
+            <a href="{{ sanitizeURL(announcement.url) }}" target="_new">More Information</a>
           </p>
         </li>
       </ul>
     </section>
 
+    <section class="col-1-twitter">
+      <h2>Tweets</h2>
+      <div class="twitter-container">
+        <ngx-twitter-timeline
+          [data]="{sourceType: 'url', url: 'https://twitter.com/sciotofootball'}"
+          [opts]="{tweetLimit: 2}"
+          class="col-2"
+        ></ngx-twitter-timeline>
+      </div>
 
-    <section>
+    </section>
+
+    <section class="sponsors">
+
       <h2>Sponsors</h2>
-      <ul>
-        <li *ngFor="let sponsor of _sponsorData">
-          <h3>{{sponsor.name}}</h3>
+      <div class="slider">
 
-          <p>
-            {{sponsor.link}} - {{sponsor.contact}}
-          </p>
-        </li>
-      </ul>
+        <ng-image-slider
+          [images]="imageObject"
+          [infinite]="true"
+          [autoSlide]="{interval: 3, stopOnHover: false}"
+          [imagePopup]="false"
+          [showArrow]="false"
+          [manageImageRatio]="true"
+          [imageSize]="{ width: '33%', space: 10}"
+          (imageClick)="imageClick($event)"
+          #nav>
+        </ng-image-slider>
+      </div>
+
+
+      <!--      <ul>-->
+      <!--        <li *ngFor="let sponsor of _sponsorData">-->
+      <!--          <h3>{{sponsor.name}}</h3>-->
+      <!--          <p>-->
+      <!--            {{sponsor.link}} - {{sponsor.contact}}-->
+      <!--          </p>-->
+      <!--        </li>-->
+      <!--      </ul>-->
     </section>
 
   </div>
 
   <div class="col-2">
-        <ngx-twitter-timeline
-          [data]="{sourceType: 'url', url: 'https://twitter.com/sciotofootball'}"
-          [opts]="{tweetLimit: 5}"
-        ></ngx-twitter-timeline>
+    <ngx-twitter-timeline
+      [data]="{sourceType: 'url', url: 'https://twitter.com/sciotofootball'}"
+      [opts]="{tweetLimit: 5}"
+      class="col-2"
+    ></ngx-twitter-timeline>
   </div>
 
 </section>
