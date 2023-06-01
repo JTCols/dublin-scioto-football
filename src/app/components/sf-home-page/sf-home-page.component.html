@@ -1,5 +1,12 @@
-<h1>Dublin Scioto Football</h1>
-
+<div class="home-title-bar">
+  <span class="title">
+    Dublin Scioto Football
+  </span>
+  <span class="ticket-button-container">
+    <button>Tickets</button>
+    <button>Team Store</button>
+  </span>
+</div>
 
 <section class="page-wrapper">
 
@@ -13,7 +20,7 @@
             {{announcement.body}}
           </p>
           <p>
-            <a href="{{ sanitizeURL(announcement.url) }}" target="_new">More Information</a>
+            <button (click)="showMore(announcement.url)">More Information</button>
           </p>
         </li>
       </ul>
@@ -25,39 +32,26 @@
         <ngx-twitter-timeline
           [data]="{sourceType: 'url', url: 'https://twitter.com/sciotofootball'}"
           [opts]="{tweetLimit: 2}"
-          class="col-2"
         ></ngx-twitter-timeline>
       </div>
-
     </section>
 
     <section class="sponsors">
-
       <h2>Sponsors</h2>
       <div class="slider">
-
         <ng-image-slider
-          [images]="imageObject"
+          [images]="_sponsorData"
           [infinite]="true"
-          [autoSlide]="{interval: 3, stopOnHover: false}"
+          [autoSlide]="{interval: 3, stopOnHover: true}"
           [imagePopup]="false"
           [showArrow]="false"
           [manageImageRatio]="true"
-          [imageSize]="{ width: '33%', space: 10}"
+          [defaultActiveImage]="2"
+          [imageSize]="{ width: '31%', space: 10}"
           (imageClick)="imageClick($event)"
           #nav>
         </ng-image-slider>
       </div>
-
-
-      <!--      <ul>-->
-      <!--        <li *ngFor="let sponsor of _sponsorData">-->
-      <!--          <h3>{{sponsor.name}}</h3>-->
-      <!--          <p>-->
-      <!--            {{sponsor.link}} - {{sponsor.contact}}-->
-      <!--          </p>-->
-      <!--        </li>-->
-      <!--      </ul>-->
     </section>
 
   </div>
@@ -66,7 +60,7 @@
     <ngx-twitter-timeline
       [data]="{sourceType: 'url', url: 'https://twitter.com/sciotofootball'}"
       [opts]="{tweetLimit: 5}"
-      class="col-2"
+      class="col-2-twitter"
     ></ngx-twitter-timeline>
   </div>
 

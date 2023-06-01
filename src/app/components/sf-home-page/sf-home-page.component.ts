@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, SecurityContext} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 import {SfApiService} from "../../services/api/sf-api.service";
@@ -16,62 +16,9 @@ export class SfHomePageComponent {
 
   _sponsorData: any = [];
 
-  imageObject: Array<object> = [
-    {
-      image: '/assets/sponsors/XL-logo-orange-white-100.png',
-      thumbImage: '/assets/sponsors/XL-logo-orange-white-100.png',
-      alt: 'Xtreme Limo',
-      title: 'Xtreme Limo'
-    },
-    {
-      image: '/assets/sponsors/sue-berg.jpg',
-      thumbImage: '/assets/sponsors/sue-berg.jpg',
-      alt: 'Sue Berg',
-      title: 'Sue Berg'
-    },
-    {
-      image: '/assets/sponsors/danielle-remax.png',
-      thumbImage: '/assets/sponsors/danielle-remax.png',
-      alt: 'Danielle:  Remax',
-      title: 'Danielle:  Remax'
-    },
-    {
-      image: '/assets/sponsors/kw-classic.jpg',
-      thumbImage: '/assets/sponsors/kw-classic.jpg',
-      alt: 'Lindsey:  kwClassic',
-      title: 'Lindsey:  kwClassic'
-    },
-    {
-      image: '/assets/sponsors/mannys-landscaping.jpg',
-      thumbImage: '/assets/sponsors/mannys-landscaping.jpg',
-      alt: "Manny\'s Landscaping",
-      title: 'Manny\'s Landscaping'
-    },
-    {
-      image: '/assets/sponsors/mulligans-logo.jpg',
-      thumbImage: '/assets/sponsors/mulligans-logo.jpg',
-      alt: "Mulligans\'s Sportspub",
-      title: 'Mulligans\'s Sportspub'
-    },
-    {
-      image: '/assets/sponsors/dublin-dental.png',
-      thumbImage: '/assets/sponsors/dublin-dental.png',
-      alt: "Dublin Dental",
-      title: 'Dublin Dental'
-    },
-    {
-      image: '/assets/sponsors/hawthorn-logo.png',
-      thumbImage: '/assets/sponsors/hawthorn-logo.png',
-      alt: "Hawthorn Academy",
-      title: 'Hawthorn Academy'
-    },
-    {
-      image: '/assets/sponsors/orlandis-cleaning.jpg',
-      thumbImage: '/assets/sponsors/orlandis-cleaning.jpg',
-      alt: "Orlandis Cleaning",
-      title: 'Orlandis\'s Cleaning'
-    }
-  ];
+
+  _imageSrcPath: string = "/assets/sponsors/";
+
 
   constructor(
     private http: HttpClient,
@@ -102,37 +49,37 @@ export class SfHomePageComponent {
   }
 
   private processSponsorData(sponsorRawData: string[]): void {
+
     for (let sponsor of sponsorRawData) {
       let retData: any = {
         id: sponsor[0],
-        name: sponsor[1],
+        title: sponsor[1],
+        alt: sponsor[1],
         contact: sponsor[2],
         link: sponsor[3],
-        imgSrc: sponsor[4],
+        thumbImage: this._imageSrcPath + sponsor[4],
+        image: sponsor[4]
       };
       this._sponsorData.push(retData);
     }
   }
 
   public imageClick(slidePosition: number) {
-
-
     // @ts-ignore
-    window.alert(this.imageObject[slidePosition].title);
-
-
-    //window.open("https://www.google.com");
+    this.showMore(this._sponsorData[slidePosition].link)
   }
-
 
   private checkDateRange(startDate: Number, endDate: Number, currDate: Number) {
     return startDate <= currDate && endDate >= currDate;
   }
 
+  showMore(url: string) {
+    if (url) window.open(this.sanitizeURL(url), "_blank");
+  }
 
   sanitizeURL(url: string) {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-
+    let retVal = this.sanitizer.sanitize(SecurityContext.URL, url);
+    return retVal || "";
   }
 
   private processAnnouncementData(announcementRawData: string[]): void {
@@ -142,7 +89,7 @@ export class SfHomePageComponent {
         body: announcementItem[1],
         startDate: Date.parse(announcementItem[2]),
         endDate: Date.parse(announcementItem[3]),
-        url: this.sanitizer.bypassSecurityTrustUrl(announcementItem[4])
+        url: announcementItem[4]
       };
 
       if (this.checkDateRange(retData.startDate, retData.endDate, new Date().getTime())) {

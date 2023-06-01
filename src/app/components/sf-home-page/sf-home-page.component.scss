@@ -1,14 +1,42 @@
+
+.home-title-bar{
+  height: 43px;
+  display: flex;
+  flex-direction: row;
+
+  .title{
+    display: flex;
+    width: calc(100% - 261px);
+    justify-content: center;
+    padding-top: 13px;
+    font-weight: bold;
+    font-size: 21px;
+  }
+
+  .ticket-button-container{
+    align-content: center;
+    justify-content: right;
+    width: 261px;
+    display: flex;
+    padding-right: 10px;
+
+    button{
+      margin: 5px 5px;
+    }
+  }
+
+}
+
 .page-wrapper {
   display: flex;
   flex-direction: row;
   margin: 0 10px;
 
-
   .col-1 {
     width: calc(100% - 250px);
 
     .announcements{
-      height: calc(100vh - 800px);;
+      min-height: calc(100vh - 800px);;
     }
 
     .col-1-twitter {
@@ -25,12 +53,14 @@
 
   .col-2 {
     width: 250px;
+    height: calc(100vh - 506px);
+    display: flex;
+    margin-bottom: 10px;
+    overflow-y: auto;
 
-    ngx-twitter-timeline.col-2 {
-      max-height: calc(100vh - 515px);
-      //height: auto;
-      overflow-y: auto;
+    ngx-twitter-timeline.col-2-twitter {
       display: block;
+      width: 100%;
     }
   }
 
@@ -46,7 +76,6 @@
         height: auto;
         margin-bottom: 10px;
       }
-
 
       .col-1-twitter {
         width: calc(100% - 50px);
@@ -68,6 +97,25 @@
 }
 
 @media (max-width: 800px) {
+
+  .home-title-bar{
+    height: 43px;
+    .title{
+      width: calc(100% - 100px);
+      padding-top: 13px;
+      font-size: 17px;
+    }
+
+    .ticket-button-container{
+      width: 200px;
+      padding-right: 10px;
+      button{
+        margin: 5px 5px;
+      }
+    }
+  }
+
+
   .page-wrapper {
     .col-1 {
       width: calc(100% - 13px);
@@ -82,7 +130,6 @@
           margin: 5px auto 0 auto;
         }
       }
-
 
     }
   }

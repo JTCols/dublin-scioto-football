@@ -1,4 +1,3 @@
-
 <h2>2023 Schedule</h2>
 
 <ul class="sub-nav">
@@ -7,10 +6,37 @@
   <li (click)="loadFrosh()">Freshman</li>
 </ul>
 
-
-
 <ul class="navigation">
-  <li *ngFor="let game of _resultData" >
-    <span class="link-title">{{game.opponent}}</span>
+  <li *ngFor="let game of _currentSeasonData">
+
+    <span class="link-title">{{ game.gameId}} {{game.date | date: 'longDate' }} -
+
+      <span *ngIf="game.location === 'A'; else home_game">
+        Dubin Scioto @ {{game.opponent}}
+      </span>
+      <ng-template #home_game>
+        {{game.opponent}} @ Dubin Scioto
+      </ng-template>
+
+      <div *ngIf="game.sciotoScore">
+        Dubin Scioto : {{game.sciotoScore}} <br>
+        {{game.opponent}} :  {{game.opponentScore}}
+      </div>
+
+      <ul class="revious-games">
+        <li *ngFor="let previousGame of processPrevious(game.opponent)">
+          {{previousGame.year}} - {{previousGame.result}} - {{previousGame.note}}
+          <div *ngIf="game.sciotoScore">
+            Dubin Scioto : {{previousGame.sciotoScore}} -
+            {{previousGame.opponent}} :  {{previousGame.opponentScore}}
+          </div>
+        </li>
+      </ul>
+
+    </span>
   </li>
 </ul>
+
+
+
+

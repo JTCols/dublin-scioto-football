@@ -1,7 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=inter&display=swap');
-//
-//@import 'ag-grid-community/styles/ag-grid.css';
-//@import 'ag-grid-community/styles/ag-theme-alpine.css';
+@import url('https://fonts.cdnfonts.com/css/inter');
+
 
 /* You can add global styles to this file, and also import other style files */
 html, body {
@@ -15,6 +13,23 @@ body {
   font-family: 'inter', sans-serif;
 }
 
+
+ng-image-slider {
+
+  .img-div {
+    border: solid 1px #ccc;
+    cursor: pointer;
+
+    &:nth-child(3) {
+      background-color: rgba(204, 204, 204, 0.13);
+      border: solid 2px green !important;
+    }
+
+    .caption {
+      background-color: rgba(31, 150, 28, 0.79)
+    }
+  }
+}
 
 
 

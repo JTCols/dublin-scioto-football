@@ -33,6 +33,12 @@ export class SfApiService {
     );
   }
 
+  public getScheduleResults( level?: string, season?: string): Observable<any> {
+    return this.httpClient.get<any>(
+      this.apiLink + level +`-schedule?alt=json&key=` + this.apiKey
+    );
+  }
+
   public getAlumni(): Observable<Alumni> {
     return this.httpClient.get<any>(
       this.apiLink + `alumni?alt=json&key=` + this.apiKey
