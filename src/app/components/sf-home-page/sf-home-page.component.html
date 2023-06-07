@@ -37,23 +37,24 @@
     </section>
 
     <section class="sponsors">
-      <h2>Sponsors</h2>
-      <div class="slider">
-        <ng-image-slider
-          [images]="_sponsorData"
-          [infinite]="true"
-          [autoSlide]="{interval: 3, stopOnHover: true}"
-          [imagePopup]="false"
-          [showArrow]="false"
-          [manageImageRatio]="true"
-          [defaultActiveImage]="2"
-          [imageSize]="{ width: '31%', space: 10}"
-          (imageClick)="imageClick($event)"
-          #nav>
-        </ng-image-slider>
+      <div>
+        <h2>Sponsors</h2>
+        <div class="slider">
+          <ng-image-slider
+            [images]="_sponsorData"
+            [infinite]="true"
+            [autoSlide]="{interval: 3, stopOnHover: true}"
+            [imagePopup]="false"
+            [showArrow]="false"
+            [manageImageRatio]="true"
+            [defaultActiveImage]="2"
+            [imageSize]="{ width: '31%', space: 10}"
+            (imageClick)="imageClick($event)"
+            #nav>
+          </ng-image-slider>
+        </div>
       </div>
     </section>
-
   </div>
 
   <div class="col-2">

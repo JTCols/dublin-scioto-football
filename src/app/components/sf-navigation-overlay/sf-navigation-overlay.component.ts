@@ -1,15 +1,16 @@
-import {Component} from '@angular/core';
-import {SfApiService} from "../../services/api/sf-api.service";
-import {Observable} from "rxjs";
+import {Component, EventEmitter, Output} from '@angular/core';
 import NavItems from "../../interfaces/navigation";
+import {SfApiService} from "../../services/api/sf-api.service";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-sf-navigation',
-  templateUrl: './sf-navigation.component.html',
-  styleUrls: ['./sf-navigation.component.scss']
+  selector: 'app-sf-navigation-overlay',
+  templateUrl: './sf-navigation-overlay.component.html',
+  styleUrls: ['./sf-navigation-overlay.component.scss']
 })
-export class SfNavigationComponent {
+export class SfNavigationOverlayComponent {
+  @Output() toggleNav: EventEmitter<string> = new EventEmitter<string>();
+
   _navData: NavItems = {
     "navData": [
       {
@@ -60,21 +61,16 @@ export class SfNavigationComponent {
     ]
   };
 
-  _showNav: boolean = false;
-
-  constructor(private apiService: SfApiService, private router: Router) {
-    // apiService.getNavigation().subscribe(
-    //   (resp: NavItems) => this._navData = resp,
-    //   (err: Error) => console.error('API service failure: ' + err),
-    //   () => console.log('Observer got a complete notification')
-    // );
+  constructor(private router: Router) {
   }
 
   loadPageComponent(route?: string) {
     this.router.navigate([route, {}]);
+    this.toggleNavOverlay();
   }
 
-  toggleMobileNav(evt: Event){
-    this._showNav = !this._showNav;
+  toggleNavOverlay() {
+    this.toggleNav.emit('toggleNav');
   }
+
 }

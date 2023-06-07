@@ -37,7 +37,8 @@ export class SfScheduleComponent implements AfterViewInit {
         year: game[5],
         location: game[6],
         date: game[7],
-        note: game[8]
+        note: game[8],
+        gameImg: game[9]
       };
       this._allSeasonData.push(retData);
     }

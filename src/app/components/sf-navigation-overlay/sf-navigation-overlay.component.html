@@ -1,3 +1,10 @@
+<header>
+  <button mat-icon-button class="menu-button" (click)="toggleNavOverlay()">
+    <mat-icon class="material-symbols-outlined">close</mat-icon>
+  </button>
+</header>
+
+
 <ul class="navigation">
   <li *ngFor="let navItem of _navData.navData" (click)="loadPageComponent(navItem?.route)">
     <div class="nav-item">
@@ -6,4 +13,3 @@
     </div>
   </li>
 </ul>
-

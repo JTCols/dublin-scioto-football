@@ -6,10 +6,14 @@ import {Component, EventEmitter, Output} from '@angular/core';
   styleUrls: ['./sf-header.component.scss']
 })
 export class SfHeaderComponent {
-  @Output() emitter:EventEmitter<string> = new EventEmitter<string>();
 
 
-  emit(){
-    this.emitter.emit('toggleNav');
+  _showNavOverlay: boolean = false;
+
+
+
+
+  toggleNavOverlay(){
+    this._showNavOverlay = ! this._showNavOverlay;
   }
 }

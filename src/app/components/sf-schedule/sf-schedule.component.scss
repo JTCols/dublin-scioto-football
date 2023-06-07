@@ -1,12 +1,143 @@
-.sub-nav{
+.sub-nav {
   list-style: none;
   display: flex;
 
-  li{
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+
+  li {
     border: solid 1px #ccc;
     padding: 6px;
     margin: 4px 5px;
-    background-color: #ccc;
-    cursor: pointer;
+
+    .link-title {
+      font-weight: bold;
+      font-size: 18px;
+      padding: 4px;
+    }
+
+    .game-content {
+      .game-image {
+        img {
+          height: auto;
+          width: 400px;
+          border-radius: 6px
+        }
+      }
+
+      .info-panel {
+        display: flex;
+        flex-direction: row;
+
+        .action-panel {
+          display: flex;
+          flex-direction: row;
+          flex-grow: 1;
+          padding: 6px;
+
+          ul {
+            width: 125px;
+
+            li {
+              border: 0;
+
+              button {
+                //width: 30px;
+                width: 100px;
+                display: flex;
+                text-align: left;
+                align-content: center;
+                padding-left: 0;
+
+
+                mat-icon, img {
+                  margin-right: 5px;
+                  width: 30px;
+                }
+
+                span {
+                  display: flex;
+                  align-content: center;
+                  height: 24px;
+                  flex-wrap: wrap;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+}
+
+
+@media (max-width: 785px) {
+  ul {
+    li {
+      .link-title {
+        text-align: center;
+      }
+
+      .game-content {
+        .game-image {
+          img {
+            display: flex;
+            margin: 0 auto;
+            width: 100%;
+            height: auto;
+          }
+        }
+
+        .info-panel {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+
+          .action-panel {
+            display: flex;
+            flex-direction: column;
+
+            ul {
+              padding: 0;
+              display: flex;
+              width: auto;
+              justify-content: center;
+
+              li {
+                button {
+                  width: 30px;
+                  display: flex;
+                  text-align: center;
+
+                  span {
+                    display: none;
+                    //text-align: center;
+                    //align-content: inherit;
+                    //height: auto;
+                  }
+                }
+              }
+            }
+
+            .final-score {
+              text-align: center;
+              display: flex;
+              flex-direction: row;
+              padding-top: 5px;
+
+              span {
+                padding: 23px 0 0 10px;
+              }
+            }
+          }
+        }
+      }
+
+    }
   }
 }

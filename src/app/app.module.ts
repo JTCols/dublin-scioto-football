@@ -30,6 +30,9 @@ import {SfResultsComponent} from './components/sf-results/sf-results.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {NgImageSliderModule} from "ng-image-slider";
+import {MatExpansionModule} from "@angular/material/expansion";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { SfNavigationOverlayComponent } from './components/sf-navigation-overlay/sf-navigation-overlay.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,8 @@ import {NgImageSliderModule} from "ng-image-slider";
     SfLinksComponent,
     SfContactsComponent,
     SfTouchdownClubComponent,
-    SfResultsComponent
+    SfResultsComponent,
+    SfNavigationOverlayComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +68,9 @@ import {NgImageSliderModule} from "ng-image-slider";
     SlickCarouselModule,
     MatButtonModule,
     MatIconModule,
-    NgImageSliderModule
+    NgImageSliderModule,
+    MatExpansionModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
