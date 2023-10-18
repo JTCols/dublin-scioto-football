@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Output, SecurityContext} from '@angular/core';
 import NavItems from "../../interfaces/navigation";
 import {SfApiService} from "../../services/api/sf-api.service";
 import {Router} from "@angular/router";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-sf-navigation-overlay',
@@ -61,7 +62,7 @@ export class SfNavigationOverlayComponent {
     ]
   };
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private sanitizer: DomSanitizer) {
   }
 
   loadPageComponent(route?: string) {
@@ -72,5 +73,11 @@ export class SfNavigationOverlayComponent {
   toggleNavOverlay() {
     this.toggleNav.emit('toggleNav');
   }
-
+  sanitizeURL(url: string) {
+    let retVal = this.sanitizer.sanitize(SecurityContext.URL, url);
+    return retVal || "";
+  }
+  navigateToLink(url: string){
+    if (url) window.open(this.sanitizeURL(url), "_blank");
+  }
 }

@@ -28,11 +28,6 @@ export class SfHomePageComponent {
   }
 
   ngOnInit() {
-    // this.http.get<any>('https://www.instagram.com/dshsirishfootball/?utm_source=ig_embed&amp;utm_campaign=loading')
-    //   .subscribe(value => {
-    //     console.log('response', value);
-    //     this.result = this.sanitizer.bypassSecurityTrustHtml(value.html);
-    //   })
 
     this.apiService.getAnnouncements().subscribe(response => {
       if (response.values && response.values.length > 1) {
@@ -99,6 +94,9 @@ export class SfHomePageComponent {
     }
   }
 
+  navigateToLink(url: string){
+    if (url) window.open(this.sanitizeURL(url), "_blank");
+  }
 
 }
 

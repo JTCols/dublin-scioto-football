@@ -6,18 +6,16 @@
 
   .title {
     display: flex;
-    width: calc(100% - 261px);
-    justify-content: center;
-    padding-top: 13px;
+    width: calc(100% - 200px);
+    padding: 11px 39px;
     font-weight: bold;
     font-size: 21px;
   }
 
   .ticket-button-container {
-    align-content: center;
-    justify-content: right;
-    width: 261px;
     display: flex;
+    justify-content: right;
+    width: 200px;
     padding-right: 10px;
 
     button {
@@ -36,17 +34,104 @@
     width: calc(100% - 250px);
     display: flex;
     flex-direction: column;
+    padding-top: 5px;
 
     .announcements {
-      min-height: calc(100vh - 800px);;
+      min-height: calc(100vh - 800px);
+      border-radius: 10px;
+      border: solid 1px forestgreen;
+      width: 90%;
+      padding: 0 20px;
+      margin: 0 auto;
+      background-color: rgba(31, 132, 65, 0.26);
+
+      h2 {
+        text-align: center;
+        font-weight: bold;
+        font-size: 18px;
+        border-bottom: solid 1px green;
+        padding-bottom: 8px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+          h3 {
+            //text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+
+          }
+          border-bottom: solid 1px #ccc;
+        }
+
+        li:last-child  {
+
+          border-bottom: solid 0 #ccc;
+        }
+      }
     }
 
     .col-1-twitter {
       display: none;
     }
 
+    .col-1-social-media {
+      display: flex;
+      flex-direction: row;
+
+      div {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+
+        h2 {
+          text-align: center;
+        }
+
+      }
+
+      .instagram-embed {
+        background: #FFF;
+        padding: 15px;
+        border-radius: 3px;
+        margin: 1px;
+
+        iframe {
+          overflow: hidden;
+          width: 340px;
+          min-height: 533px;
+          margin: 0 auto;
+        }
+      }
+
+      .facebook-embed {
+        padding: 15px;
+
+        iframe.facebook-iframe {
+          overflow: hidden;
+          width: 340px;
+          height: 100%;
+          margin: 0 auto;
+          border: 0;
+        }
+      }
+
+    }
+
     .sponsors {
       margin: auto 5px 5px 0;
+
+      h2 {
+        text-align: center;
+        font-weight: bold;
+        font-size: 18px;
+        border-bottom: solid 1px #ccc;
+        padding-bottom: 8px;
+      }
 
       .slider {
         margin: 10px 20px;
@@ -56,7 +141,6 @@
 
   .col-2 {
     width: 250px;
-
     display: flex;
     margin-bottom: 10px;
     overflow-y: auto;
@@ -64,16 +148,13 @@
     ngx-twitter-timeline.col-2-twitter {
       display: block;
       width: 100%;
-     // height: calc(100vh - 123px);
       max-height: calc(100vh - 520px);
-
     }
   }
-
 }
 
 
-@media (max-width: 1028px) {
+@media (max-width: 1173px) {
   .page-wrapper {
     .col-1 {
       width: calc(100% - 13px);
@@ -87,6 +168,14 @@
         width: calc(100% - 50px);
         margin: 5px auto 0 auto;
         display: block;
+
+        h2 {
+          text-align: center;
+          font-weight: bold;
+          font-size: 18px;
+          border-bottom: solid 1px #ccc;
+          padding-bottom: 8px;
+        }
       }
     }
 
@@ -94,7 +183,6 @@
       width: 0;
 
       ngx-twitter-timeline.col-2 {
-        //border: solid 1px yellow;
         max-height: calc(100vh - 174px);
         overflow-y: auto;
         display: none;
@@ -109,13 +197,13 @@
     height: 43px;
 
     .title {
-      width: calc(100% - 100px);
+      //width: calc(100% - 100px);
       padding-top: 13px;
       font-size: 17px;
     }
 
     .ticket-button-container {
-      width: 200px;
+      //width: 200px;
       padding-right: 10px;
 
       button {
@@ -138,7 +226,32 @@
           width: calc(100% - 20px);
           margin: 5px auto 0 auto;
         }
+
       }
+
+      .col-1-social-media {
+        flex-direction: column;
+
+        div {
+          width: 100%;
+        }
+
+        .instagram-embed {
+          padding: 0;
+        }
+
+        .facebook-embed {
+          padding: 0;
+
+          iframe.facebook-iframe {
+
+            min-height: 300px;
+
+          }
+
+        }
+      }
+
 
     }
   }

@@ -7,11 +7,11 @@
     border-bottom: solid 1px #ccc;
     min-height: 350px;
     max-height: 350px;
-    background-image: url('/assets/handsintheair1.png');
-    background-attachment: fixed;
-    background-position: center 40px;
+    background-image: url('/assets/scioto-banner.png');
+    //background-attachment: fixed;
+    background-position: center center;
     background-repeat: no-repeat;
-    background-size: 100% 350px;
+    background-size: 100%;
     color: white;
 
     img.header-logo {
@@ -27,7 +27,6 @@
       display: none;
 
     }
-
   }
 
   .banner-message {
@@ -39,13 +38,24 @@
     border-bottom: solid 10px #1F8441;
   }
 
-  .menu-container{
+  .menu-container {
     display: none;
   }
 }
 
 
-@media (max-width: 550px) {
+@media (max-width: 800px) {
+
+  :host {
+    .header-container {
+      //background-attachment: fixed;
+      background-size: 175%;
+    }
+  }
+}
+
+
+@media (max-width: 499px) {
 
   :host {
     .header-container {
@@ -54,13 +64,13 @@
       }
     }
 
-    .menu-container{
+    .menu-container {
 
       display: none;
       width: 0;
       z-index: 99;
 
-      &.open{
+      &.open {
         display: flex;
         position: fixed;
         top: 0;

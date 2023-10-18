@@ -1,8 +1,58 @@
-.carousel-container {
-  width: calc(100% - 25px);
-  margin: 10px auto;
-  .hero{
-    min-height: 675px;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+
+  .carousel-container {
+    width: 90%;
+    margin: 10px auto;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    margin: 10px auto;
+
+    .info-container {
+      margin-right: 10px;
+      min-width: 47%;
+      .info-item {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 15px;
+
+        .info-title {
+          font-weight: bold;
+          width: 95px;
+          margin-right: 8px;
+        }
+
+        .info-display {
+
+        }
+      }
+
+    }
+
+  }
+}
+
+@media (max-width: 609px) {
+
+  :host {
+    .info {
+      display: flex;
+      flex-direction: column;
+      width: 95%;
+
+      .info-container {
+        margin-right: 10px;
+        width: 100%;
+      }
+    }
   }
 }
 

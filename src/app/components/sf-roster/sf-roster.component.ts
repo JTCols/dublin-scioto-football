@@ -29,7 +29,7 @@ export class SfRosterComponent implements OnInit {
     {field: 'weight'},
     {field: 'position'},
     // {field: 'role'},
-    {field: 'season'},
+    //{field: 'season'},
 
   ];
 

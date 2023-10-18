@@ -1,13 +1,17 @@
 
+.player-table {
+  width: 100%;
 
-.player-table{
-  border: solid 1px red;
+  .image-cell {
+    width: 100px;
 
-  .image-cell{
-    width:  100px;
-
-    img{
+    img {
       max-width: 125px;
     }
   }
+}
+
+
+.nfl-logo{
+  max-width: 100%;
 }

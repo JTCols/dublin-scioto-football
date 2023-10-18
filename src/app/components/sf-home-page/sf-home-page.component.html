@@ -1,10 +1,10 @@
 <div class="home-title-bar">
   <span class="title">
-    Dublin Scioto Football
+    Scioto Football
   </span>
   <span class="ticket-button-container">
-    <button>Tickets</button>
-    <button>Team Store</button>
+    <button (click)="navigateToLink('https://dublinschools.hometownticketing.com/embed/all?tile_id=1&tile_item=5')">Home Tickets</button>
+<!--    <button (click)="navigateToLink('https://dublin-scioto-touchdown-club.square.site/s/shop')">Team Store</button>-->
   </span>
 </div>
 
@@ -20,7 +20,7 @@
             {{announcement.body}}
           </p>
           <p>
-            <button (click)="showMore(announcement.url)">More Information</button>
+            <button *ngIf="announcement.url" (click)="showMore(announcement.url)">More Information</button>
           </p>
         </li>
       </ul>
@@ -35,6 +35,50 @@
         ></ngx-twitter-timeline>
       </div>
     </section>
+
+    <section class="col-1-social-media">
+      <div class="instagram-embed">
+        <h2>Instagram</h2>
+        <blockquote class="instagram-media"
+                    data-instgrm-permalink="https://www.instagram.com/dshsirishfootball/"
+                    data-instgrm-version="14">
+          <div>
+            <a
+              href="https://www.instagram.com/dshsirishfootball/?utm_source=ig_embed&amp;utm_campaign=loading"
+              style=""
+              target="_blank">
+              <div>
+                <div
+                  style="color:#3897f0;">
+                  View this profile on Instagram
+                </div>
+              </div>
+            </a>
+            <p style=" color:#c9c8cd; ">
+              <a href="https://www.instagram.com/dshsirishfootball/?utm_source=ig_embed&amp;utm_campaign=loading"
+                 style=""
+                 target="_blank">Dublin Scioto Football</a>
+
+              (@<a href="https://www.instagram.com/dshsirishfootball/?utm_source=ig_embed&amp;utm_campaign=loading"
+                   target="_blank">dshsirishfootball</a>) • Instagram photos and videos
+            </p>
+          </div>
+        </blockquote>
+      </div>
+
+      <div class="facebook-embed">
+        <h2>Facebook</h2>
+        <iframe
+          src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FDublinSciotoIrishFootball%2F&tabs=timeline&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=764865925153384"
+          class="facebook-iframe"
+          title="Facebook"
+          allowfullscreen
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+        </iframe>
+      </div>
+
+    </section>
+
 
     <section class="sponsors">
       <div>
@@ -66,5 +110,6 @@
   </div>
 
 </section>
+
 
 

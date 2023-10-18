@@ -1,5 +1,6 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, SecurityContext} from '@angular/core';
 import {SfApiService} from "../../services/api/sf-api.service";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-sf-schedule',
@@ -12,7 +13,7 @@ export class SfScheduleComponent implements AfterViewInit {
   _previousResults: any = [];
 
 
-  constructor(private apiService: SfApiService) {
+  constructor(private apiService: SfApiService,  private sanitizer: DomSanitizer) {
   }
 
   ngAfterViewInit() {
@@ -38,16 +39,33 @@ export class SfScheduleComponent implements AfterViewInit {
         location: game[6],
         date: game[7],
         note: game[8],
-        gameImg: game[9]
+        gameImg: game[9],
+        maxPreps: game[10],
+        tickets: game[11]
       };
       this._allSeasonData.push(retData);
     }
     this._currentSeasonData = this._allSeasonData.filter((season: any) => season.year === year);
   }
 
-  processPrevious(opponent: string): any[]{
-    return this._allSeasonData.filter((game: any) => game.opponent === opponent);
+  buildAnalytics(data: any[]){
 
+  }
+
+
+  processPrevious(opponent: string): any[]{
+    let retData = this._allSeasonData.filter((game: any) => game.opponent === opponent);
+    this.buildAnalytics(retData);
+    return retData;
+  }
+
+  sanitizeURL(url: string) {
+    let retVal = this.sanitizer.sanitize(SecurityContext.URL, url);
+    return retVal || "";
+  }
+
+  navigateToLink(url: string){
+    if (url) window.open(this.sanitizeURL(url), "_blank");
   }
 
   /**

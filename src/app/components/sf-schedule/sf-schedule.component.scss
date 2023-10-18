@@ -17,6 +17,21 @@ ul {
       font-weight: bold;
       font-size: 18px;
       padding: 4px;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      .game-info{
+        flex-grow: 1;
+      }
+
+      .game-note{
+        justify-self: flex-end;
+        //margin: 0 5px 0 15px;
+        font-size: 16px;
+        font-weight: normal;
+        padding: 10px 0;
+      }
     }
 
     .game-content {
@@ -52,7 +67,6 @@ ul {
                 align-content: center;
                 padding-left: 0;
 
-
                 mat-icon, img {
                   margin-right: 5px;
                   width: 30px;
@@ -76,7 +90,7 @@ ul {
 }
 
 
-@media (max-width: 785px) {
+@media (max-width: 800px) {
   ul {
     li {
       .link-title {
@@ -113,7 +127,7 @@ ul {
                   width: 30px;
                   display: flex;
                   text-align: center;
-
+                  padding: 0;
                   span {
                     display: none;
                     //text-align: center;
