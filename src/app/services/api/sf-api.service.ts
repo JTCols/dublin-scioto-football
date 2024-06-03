@@ -58,6 +58,12 @@ export class SfApiService {
     );
   }
 
+  public getLinks(): Observable<any> {
+    return this.httpClient.get<any>(
+      this.apiLink + `links?alt=json&key=` + this.apiKey
+    );
+  }
+
   public getSponsors(): Observable<any> {
     return this.httpClient.get<any>(
       this.apiLink + `sponsors?alt=json&key=` + this.apiKey
