@@ -84,14 +84,14 @@ export class SfScheduleComponent implements AfterViewInit {
   }
 
   loadJV() {
-    this.loadData("jv", "2023");
+    this.loadData("jv", "2024");
   }
 
   loadFrosh() {
-    this.loadData("freshman", "2023");
+    this.loadData("freshman", "2024");
   }
 
   loadVarsity() {
-    this.loadData("varsity", "2023");
+    this.loadData("varsity", "2024");
   }
 }

@@ -68,7 +68,6 @@
         }
 
         li:last-child  {
-
           border-bottom: solid 0 #ccc;
         }
       }
@@ -76,6 +75,8 @@
 
     .col-1-twitter {
       display: none;
+      max-height: 400px;
+      overflow: auto;
     }
 
     .col-1-social-media {

@@ -1,10 +1,17 @@
+<div id="fb-root"></div>
+<!--<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v20.0"-->
+<!--        nonce="9rw7RX5U">-->
+<script async defer crossOrigin="anonymous"
+        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v21.0">
+
+</script>
+
 <div class="home-title-bar">
   <span class="title">
     Scioto Football
   </span>
   <span class="ticket-button-container">
     <button (click)="navigateToLink('https://dublinschools.hometownticketing.com/embed/all?tile_id=1&tile_item=5')">Home Tickets</button>
-<!--    <button (click)="navigateToLink('https://dublin-scioto-touchdown-club.square.site/s/shop')">Team Store</button>-->
   </span>
 </div>
 
@@ -15,9 +22,9 @@
       <h2>Announcements</h2>
       <ul>
         <li *ngFor="let announcement of _announcementData">
-          <h3>{{announcement.headline}}</h3>
+          <h3>{{ announcement.headline }}</h3>
           <p>
-            {{announcement.body}}
+            {{ announcement.body }}
           </p>
           <p>
             <button *ngIf="announcement.url" (click)="showMore(announcement.url)">More Information</button>
@@ -29,10 +36,10 @@
     <section class="col-1-twitter">
       <h2>Tweets</h2>
       <div class="twitter-container">
-        <ngx-twitter-timeline
-          [data]="{sourceType: 'url', url: 'https://twitter.com/sciotofootball'}"
-          [opts]="{tweetLimit: 2}"
-        ></ngx-twitter-timeline>
+        <a class="twitter-timeline" href="https://twitter.com/sciotofootball?ref_src=twsrc%5Etfw">
+          Tweets by sciotofootball
+        </a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
       </div>
     </section>
 
@@ -68,15 +75,14 @@
 
       <div class="facebook-embed">
         <h2>Facebook</h2>
-        <iframe
-          src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FDublinSciotoIrishFootball%2F&tabs=timeline&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=764865925153384"
-          class="facebook-iframe"
-          title="Facebook"
-          allowfullscreen
-          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+
+        <iframe src='https://widgets.sociablekit.com/facebook-page-posts/iframe/25511758'
+                width='100%'
+                height='100%'
+                title='Facebook Container'>
+
         </iframe>
       </div>
-
     </section>
 
 
@@ -107,6 +113,7 @@
       [opts]="{tweetLimit: 5}"
       class="col-2-twitter"
     ></ngx-twitter-timeline>
+
   </div>
 
 </section>
