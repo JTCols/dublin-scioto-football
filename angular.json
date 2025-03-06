@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "dublin-football-ng:build:production"
+              "buildTarget": "dublin-football-ng:build:production"
             },
             "development": {
-              "browserTarget": "dublin-football-ng:build:development"
+              "buildTarget": "dublin-football-ng:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "dublin-football-ng:build"
+            "buildTarget": "dublin-football-ng:build"
           }
         },
         "test": {

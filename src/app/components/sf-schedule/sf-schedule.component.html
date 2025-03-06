@@ -13,7 +13,7 @@
 
       <span class="game-info" *ngIf="game.location === 'A'; else home_game">
         <span>
-          {{game.date | date: 'shortDate' }}: Dublin Scioto @ {{game.opponent}}
+          {{game.date | date: 'shortDate' }}: Dublin Scioto &#64; {{game.opponent}}
         </span>
         <span class="game-note" *ngIf="game.note">
           {{game.note}}
@@ -21,7 +21,7 @@
       </span>
       <ng-template #home_game>
         <span class="game-info">
-          {{game.date | date: 'shortDate' }}: {{game.opponent}} @ Dublin Scioto
+          {{game.date | date: 'shortDate' }}: {{game.opponent}} &#64; Dublin Scioto
         </span>
         <span class="game-note" *ngIf="game.note">
           {{game.note}}
