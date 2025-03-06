@@ -1,5 +1,5 @@
 import {Component, SecurityContext} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 import {SfApiService} from "../../services/api/sf-api.service";
 
