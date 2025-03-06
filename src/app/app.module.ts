@@ -7,7 +7,7 @@ import {SfHeaderComponent} from './components/sf-header/sf-header.component';
 import {SfFooterComponent} from './components/sf-footer/sf-footer.component';
 import {SfNavigationComponent} from './components/sf-navigation/sf-navigation.component';
 import {SfHomePageComponent} from './components/sf-home-page/sf-home-page.component';
-import {HttpClientModule} from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import {SfScheduleComponent} from './components/sf-schedule/sf-schedule.component';
 import {SfRosterComponent} from './components/sf-roster/sf-roster.component';
 import {SfCoachingStaffComponent} from './components/sf-coaching-staff/sf-coaching-staff.component';
@@ -34,46 +34,39 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { SfNavigationOverlayComponent } from './components/sf-navigation-overlay/sf-navigation-overlay.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    SfHeaderComponent,
-    SfFooterComponent,
-    SfNavigationComponent,
-    SfHomePageComponent,
-    SfScheduleComponent,
-    SfRosterComponent,
-    SfCoachingStaffComponent,
-    SfCalendarComponent,
-    SfStandingsComponent,
-    SfStatisticsComponent,
-    SfStoriedRivalsComponent,
-    SfAlumniComponent,
-    SfIrishNflComponent,
-    SfHistoryComponent,
-    SfRecordsComponent,
-    SfStadiumComponent,
-    SfLinksComponent,
-    SfContactsComponent,
-    SfTouchdownClubComponent,
-    SfResultsComponent,
-    SfNavigationOverlayComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    AgGridModule,
-    NgxTwitterTimelineModule,
-    SlickCarouselModule,
-    MatButtonModule,
-    MatIconModule,
-    NgImageSliderModule,
-    MatExpansionModule,
-    BrowserAnimationsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        SfHeaderComponent,
+        SfFooterComponent,
+        SfNavigationComponent,
+        SfHomePageComponent,
+        SfScheduleComponent,
+        SfRosterComponent,
+        SfCoachingStaffComponent,
+        SfCalendarComponent,
+        SfStandingsComponent,
+        SfStatisticsComponent,
+        SfStoriedRivalsComponent,
+        SfAlumniComponent,
+        SfIrishNflComponent,
+        SfHistoryComponent,
+        SfRecordsComponent,
+        SfStadiumComponent,
+        SfLinksComponent,
+        SfContactsComponent,
+        SfTouchdownClubComponent,
+        SfResultsComponent,
+        SfNavigationOverlayComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        AgGridModule,
+        NgxTwitterTimelineModule,
+        SlickCarouselModule,
+        MatButtonModule,
+        MatIconModule,
+        NgImageSliderModule,
+        MatExpansionModule,
+        BrowserAnimationsModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {
 }
