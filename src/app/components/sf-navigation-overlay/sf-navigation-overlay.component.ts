@@ -3,10 +3,19 @@ import NavItems from "../../interfaces/navigation";
 import {SfApiService} from "../../services/api/sf-api.service";
 import {Router} from "@angular/router";
 import {DomSanitizer} from "@angular/platform-browser";
+import {MatIcon} from "@angular/material/icon";
+import {MatIconButton} from "@angular/material/button";
+import {NgForOf} from "@angular/common";
 
 @Component({
+  standalone: true,
   selector: 'app-sf-navigation-overlay',
   templateUrl: './sf-navigation-overlay.component.html',
+  imports: [
+    MatIcon,
+    MatIconButton,
+    NgForOf
+  ],
   styleUrls: ['./sf-navigation-overlay.component.scss']
 })
 export class SfNavigationOverlayComponent {

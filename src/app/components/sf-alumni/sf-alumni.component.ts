@@ -4,8 +4,12 @@ import {CellClickedEvent, ColDef, GridReadyEvent} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
 
 @Component({
+  standalone: true,
   selector: 'app-sf-alumni',
   templateUrl: './sf-alumni.component.html',
+  imports: [
+    AgGridAngular
+  ],
   styleUrls: ['./sf-alumni.component.scss']
 })
 export class SfAlumniComponent {

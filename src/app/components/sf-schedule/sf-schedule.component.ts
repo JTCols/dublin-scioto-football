@@ -1,10 +1,24 @@
 import {AfterViewInit, Component, SecurityContext} from '@angular/core';
 import {SfApiService} from "../../services/api/sf-api.service";
 import {DomSanitizer} from "@angular/platform-browser";
+import {DatePipe, NgForOf, NgIf, NgStyle} from "@angular/common";
+import {MatIcon} from "@angular/material/icon";
+import {MatExpansionPanel, MatExpansionPanelDescription, MatExpansionPanelTitle} from "@angular/material/expansion";
 
 @Component({
+  standalone: true,
   selector: 'app-sf-schedule',
   templateUrl: './sf-schedule.component.html',
+  imports: [
+    NgForOf,
+    DatePipe,
+    MatIcon,
+    NgIf,
+    MatExpansionPanel,
+    MatExpansionPanelTitle,
+    MatExpansionPanelDescription,
+    NgStyle
+  ],
   styleUrls: ['./sf-schedule.component.scss']
 })
 export class SfScheduleComponent implements AfterViewInit {

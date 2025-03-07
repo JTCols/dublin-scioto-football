@@ -2,11 +2,21 @@ import {Component, SecurityContext} from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 import {SfApiService} from "../../services/api/sf-api.service";
+import {NgForOf, NgIf} from "@angular/common";
+import {NgImageSliderModule} from "ng-image-slider";
+import {NgxTwitterTimelineModule} from "ngx-twitter-timeline";
 
 
 @Component({
+  standalone: true,
   selector: 'app-sf-home-page',
   templateUrl: './sf-home-page.component.html',
+  imports: [
+    NgForOf,
+    NgIf,
+    NgImageSliderModule,
+
+  ],
   styleUrls: ['./sf-home-page.component.scss']
 })
 export class SfHomePageComponent {
