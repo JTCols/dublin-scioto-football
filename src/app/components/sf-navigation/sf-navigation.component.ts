@@ -4,10 +4,17 @@ import {Observable} from "rxjs";
 import NavItems from "../../interfaces/navigation";
 import {Router} from "@angular/router";
 import {DomSanitizer} from "@angular/platform-browser";
+import {NgForOf} from "@angular/common";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
+  standalone: true,
   selector: 'app-sf-navigation',
   templateUrl: './sf-navigation.component.html',
+  imports: [
+    NgForOf,
+    MatIcon
+  ],
   styleUrls: ['./sf-navigation.component.scss']
 })
 export class SfNavigationComponent {

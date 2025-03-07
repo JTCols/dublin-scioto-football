@@ -5,8 +5,12 @@ import {SfApiService} from "../../services/api/sf-api.service";
 
 
 @Component({
+  standalone: true,
   selector: 'app-sf-links',
   templateUrl: './sf-links.component.html',
+  imports: [
+    AgGridAngular
+  ],
   styleUrls: ['./sf-links.component.scss']
 })
 export class SfLinksComponent {

@@ -1,8 +1,13 @@
 import {Component} from '@angular/core';
+import {NgImageSliderModule} from "ng-image-slider";
 
 @Component({
+  standalone: true,
   selector: 'app-sf-stadium',
   templateUrl: './sf-stadium.component.html',
+  imports: [
+    NgImageSliderModule
+  ],
   styleUrls: [
     './sf-stadium.component.scss'
   ]

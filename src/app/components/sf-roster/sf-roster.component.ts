@@ -4,8 +4,12 @@ import {CellClickedEvent, ColDef, GridApi, GridReadyEvent} from "ag-grid-communi
 import {SfApiService} from "../../services/api/sf-api.service";
 
 @Component({
+  standalone: true,
   selector: 'app-sf-roster',
   templateUrl: './sf-roster.component.html',
+  imports: [
+    AgGridAngular
+  ],
   styleUrls: ['./sf-roster.component.scss']
 })
 

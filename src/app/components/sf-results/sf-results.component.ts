@@ -4,8 +4,12 @@ import {AgGridAngular} from "ag-grid-angular";
 import {ColDef, GridReadyEvent} from "ag-grid-community";
 
 @Component({
+  standalone: true,
   selector: 'app-sf-results',
   templateUrl: './sf-results.component.html',
+  imports: [
+    AgGridAngular
+  ],
   styleUrls: ['./sf-results.component.scss']
 })
 export class SfResultsComponent {

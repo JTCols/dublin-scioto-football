@@ -95,14 +95,12 @@
 
 
       <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Rivalry History
-          </mat-panel-title>
-          <mat-panel-description>
-            Click for complete history of games played between these teams.
-          </mat-panel-description>
-        </mat-expansion-panel-header>
+        <mat-panel-title>
+          Rivalry History
+        </mat-panel-title>
+        <mat-panel-description>
+          Click for complete history of games played between these teams.
+        </mat-panel-description>
 
         <ul class="previous-games">
           <li *ngFor="let previousGame of processPrevious(game.opponent)"
