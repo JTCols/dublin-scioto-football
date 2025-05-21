@@ -1,19 +1,56 @@
-<ul class="sub-nav">
-  <li (click)="loadVarsity()">Varsity</li>
-  <li (click)="loadJV()">J.V.</li>
-  <li (click)="loadFrosh()">Freshman</li>
-</ul>
+<!-- Loading state -->
+<div *ngIf="loading" class="loading-message">
+  <p>Loading game results...</p>
+</div>
 
+<!-- Error state -->
+<div *ngIf="error && !loading" class="error-message">
+  <p>{{ errorMessage }}</p>
+</div>
 
-<ag-grid-angular
-  style="width: calc(100% - 10px); height: calc(100% - 30px)"
-  class="ag-theme-alpine"
-  [columnDefs]="columnDefs"
-  [defaultColDef]="defaultColDef"
-  [rowData]="_resultData"
-  [rowSelection]="'multiple'"
-  [animateRows]="true"
-  (gridReady)="onGridReady($event)"
-  domLayout='autoHeight'
-></ag-grid-angular>
+<!-- Grid display -->
+<div *ngIf="!loading && !error && _resultData.length > 0" class="results-container">
+  <div class="controls">
+    <!-- Team selection buttons -->
+    <div class="team-selectors">
+      <button class="team-btn" [class.active]="activeTab === 'varsity'" (click)="loadVarsity()">Varsity</button>
+      <button class="team-btn" [class.active]="activeTab === 'jv'" (click)="loadJV()">J.V.</button>
+      <button class="team-btn" [class.active]="activeTab === 'frosh'" (click)="loadFrosh()">Freshman</button>
+    </div>
+    
+    <div class="search-container">
+      <label for="quickFilter">Search: </label>
+      <input 
+        type="text" 
+        id="quickFilter" 
+        [(ngModel)]="quickFilterText" 
+        (input)="onFilterTextBoxChanged()"
+        placeholder="Filter by opponent, result, etc.">
+    </div>
+  </div>
+  
+  <ag-grid-angular
+    class="ag-theme-alpine results-grid"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [rowData]="_resultData"
+    [rowSelection]="'multiple'"
+    [animateRows]="true"
+    [pagination]="true"
+    [paginationPageSize]="25"
+    [paginationPageSizeSelector]="[10, 25, 50, 100]"
+    (gridReady)="onGridReady($event)"
+    domLayout='autoHeight'
+    [quickFilterText]="quickFilterText"
+  ></ag-grid-angular>
+  
+  <div class="grid-info">
+    <p>Showing {{_resultData.length}} game results</p>
+  </div>
+</div>
+
+<!-- No data state -->
+<div *ngIf="!loading && !error && _resultData.length === 0" class="no-data-message">
+  <p>No game results available for the selected level.</p>
+</div>
 <!--  (cellClicked)="onCellClicked($event)"-->

@@ -1,16 +1,36 @@
-
-<!-- Button to clear selection -->
-<button (click)="clearSelection()">Clear Selection</button>
-<!-- AG Grid Angular Component -->
-<ag-grid-angular
-  style="width: calc(100% - 10px); height: calc(100% - 30px)"
-  class="ag-theme-alpine"
-  [columnDefs]="columnDefs"
-  [defaultColDef]="defaultColDef"
-  [rowData]="alumData"
-  [rowSelection]="'multiple'"
-  [animateRows]="true"
-  (gridReady)="onGridReady($event)"
-  (cellClicked)="onCellClicked($event)"
-  domLayout='autoHeight'
-></ag-grid-angular>
+<div class="alumni-container">
+  <div class="controls">
+    <button (click)="clearSelection()" class="control-btn">Clear Selection</button>
+    <div class="search-container">
+      <label for="quickFilter">Search: </label>
+      <input 
+        type="text" 
+        id="quickFilter" 
+        [(ngModel)]="quickFilterText" 
+        (input)="onFilterTextBoxChanged()"
+        placeholder="Filter by name, position, etc.">
+    </div>
+  </div>
+  
+  <!-- AG Grid Angular Component -->
+  <ag-grid-angular
+    style="width: 100%; height: auto;"
+    class="ag-theme-alpine alumni-grid"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [rowData]="alumData"
+    [rowSelection]="'multiple'"
+    [animateRows]="true"
+    [pagination]="true"
+    [paginationPageSize]="25"
+    [paginationPageSizeSelector]="[10, 25, 50, 100]"
+    (gridReady)="onGridReady($event)"
+    (cellClicked)="onCellClicked($event)"
+    domLayout='autoHeight'
+    [quickFilterText]="quickFilterText"
+  ></ag-grid-angular>
+  
+  <div class="grid-info">
+    <p *ngIf="alumData?.length">Showing {{alumData.length}} alumni records</p>
+  </div>
+</div>

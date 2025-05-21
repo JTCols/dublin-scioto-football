@@ -1,0 +1,70 @@
+/* Common Page Header Styles for Dublin Scioto Football
+ * This file contains standardized header styles to be used across all components
+ */
+
+/* Dublin Scioto Colors */
+$scioto-green: #006633;
+$scioto-silver: #C0C0C0;
+
+/* 
+ * Standard Page Heading
+ * Usage: 
+ * <h1 class="ds-page-heading">Page Title</h1>
+ * or
+ * <h2 class="ds-page-heading">Page Title</h2>
+ */
+.ds-page-heading {
+  color: $scioto-green;
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  text-align: center;
+  
+  &:after {
+    content: '';
+    display: block;
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(90deg, $scioto-green, $scioto-silver);
+    margin: 0.8rem auto 1.5rem;
+    border-radius: 2px;
+  }
+  
+  /* Variant for left-aligned headings */
+  &.left-aligned {
+    text-align: left;
+    
+    &:after {
+      margin-left: 0;
+    }
+  }
+}
+
+/* Section Heading (for sub-sections) */
+.ds-section-heading {
+  color: $scioto-green;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  position: relative;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .ds-page-heading {
+    font-size: 1.8rem;
+    
+    &:after {
+      width: 80px;
+      height: 3px;
+      margin: 0.5rem auto 1rem;
+    }
+  }
+  
+  .ds-section-heading {
+    font-size: 1.3rem;
+  }
+} 

@@ -1,23 +1,147 @@
-:host {
+/* Dublin Scioto Colors */
+$scioto-green: #006633;
+$scioto-silver: #C0C0C0;
+$footer-dark: #222222;
+$text-light: #ffffff;
+
+.footer {
+  background-color: $footer-dark;
+  color: $text-light;
+  width: 100%;
+  height: 75px; /* Fixed height as requested */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.footer-container {
   display: flex;
-  background-color: black;
-  color: white;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 100%;
+}
 
-  .footer-links {
-    display: flex;
-    list-style-type: none;
-    padding: 0 10px;
-    max-width: 400px;
-    margin: 0 auto;
-    height: 40px;
-
-    a {
-      color: white;
-      padding: 10px;
+/* Footer Sections */
+.footer-section {
+  margin-bottom: 30px;
+  min-width: 200px;
+  
+  h3 {
+    color: $scioto-silver;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 10px;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: $scioto-green;
     }
-
   }
+}
 
+/* Branding Section */
+.footer-branding {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: $scioto-silver;
+}
+
+/* Links Section */
+.footer-links {
+  display: flex;
+  gap: 20px;
+  
+  a {
+    color: $text-light;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+    
+    &:hover {
+      color: $scioto-silver;
+    }
+  }
+}
+
+/* Social Media Section */
+.footer-social {
+  display: flex;
+  gap: 15px;
+  
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: $text-light;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background-color: $scioto-green;
+    }
+  }
+}
+
+/* Copyright */
+.footer-copyright {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 900px) {
+  .footer-branding {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .footer-links {
+    gap: 15px;
+    
+    a {
+      font-size: 0.8rem;
+    }
+  }
+  
+  .footer-social {
+    gap: 10px;
+    
+    a {
+      width: 28px;
+      height: 28px;
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  .footer-copyright {
+    display: none;
+  }
+  
+  .footer-links {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 450px) {
+  .footer-links {
+    a:nth-child(4), a:nth-child(5) {
+      display: none;
+    }
+  }
 }
 
 

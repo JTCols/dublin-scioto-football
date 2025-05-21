@@ -1,11 +1,16 @@
-import {Component, SecurityContext} from '@angular/core';
+import {Component, SecurityContext, AfterViewInit, OnInit, OnDestroy} from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 import {SfApiService} from "../../services/api/sf-api.service";
 import {NgForOf, NgIf} from "@angular/common";
 import {NgImageSliderModule} from "ng-image-slider";
-import {NgxTwitterTimelineModule} from "ngx-twitter-timeline";
+import {ImgFallbackDirective} from '../../directives/img-fallback.directive';
 
+declare global {
+  interface Window {
+    instgrm?: any;
+  }
+}
 
 @Component({
   standalone: true,
@@ -15,20 +20,21 @@ import {NgxTwitterTimelineModule} from "ngx-twitter-timeline";
     NgForOf,
     NgIf,
     NgImageSliderModule,
-
+    ImgFallbackDirective
   ],
   styleUrls: ['./sf-home-page.component.scss']
 })
-export class SfHomePageComponent {
+export class SfHomePageComponent implements AfterViewInit, OnInit, OnDestroy {
   result: SafeHtml = "";
 
   _announcementData: any = [];
 
   _sponsorData: any = [];
 
+  // Path to sponsor images
+  _originalImagePath: string = "/assets/sponsors/";
 
-  _imageSrcPath: string = "/assets/sponsors/";
-
+  private instagramScriptElement: HTMLScriptElement | null = null;
 
   constructor(
     private http: HttpClient,
@@ -38,7 +44,6 @@ export class SfHomePageComponent {
   }
 
   ngOnInit() {
-
     this.apiService.getAnnouncements().subscribe(response => {
       if (response.values && response.values.length > 1) {
         this.processAnnouncementData(response.values)
@@ -50,31 +55,72 @@ export class SfHomePageComponent {
         this.processSponsorData(response.values)
       }
     });
+  }
 
+  ngAfterViewInit() {
+    // Process Instagram embeds after view init
+    this.processInstagramEmbeds();
+  }
+  
+  ngOnDestroy() {
+    // Clean up the script element if it exists
+    if (this.instagramScriptElement) {
+      document.body.removeChild(this.instagramScriptElement);
+    }
+  }
+
+  // Manually process Instagram embeds
+  private processInstagramEmbeds(): void {
+    // Load the Instagram script
+    if (!document.getElementById('instagram-embed-script')) {
+      const script = document.createElement('script');
+      script.id = 'instagram-embed-script';
+      script.src = '//www.instagram.com/embed.js';
+      script.async = true;
+      script.defer = true;
+      document.body.appendChild(script);
+      this.instagramScriptElement = script;
+      
+      // Process embeds once the script is loaded
+      script.onload = () => {
+        if (window.instgrm) {
+          window.instgrm.Embeds.process();
+        }
+      };
+    } else if (window.instgrm) {
+      // If script already exists, just process embeds
+      window.instgrm.Embeds.process();
+    }
   }
 
   private processSponsorData(sponsorRawData: string[]): void {
-
     for (let sponsor of sponsorRawData) {
+      let imageName = sponsor[4];
+      
+      // Create sponsor object with explicit dimensions to avoid NG0913 warning
       let retData: any = {
         id: sponsor[0],
         title: sponsor[1],
         alt: sponsor[1],
         contact: sponsor[2],
         link: sponsor[3],
-        thumbImage: this._imageSrcPath + sponsor[4],
-        image: sponsor[4]
+        thumbImage: this._originalImagePath + imageName,
+        image: imageName,
+        width: 190, // Explicit width matching slider configuration
+        height: 100, // Explicit height for aspect ratio
+        posterLoading: true // Use poster loading for better performance
       };
       this._sponsorData.push(retData);
     }
   }
 
   public imageClick(slidePosition: number) {
-    // @ts-ignore
-    this.showMore(this._sponsorData[slidePosition].link)
+    if (slidePosition >= 0 && slidePosition < this._sponsorData.length) {
+      this.showMore(this._sponsorData[slidePosition].link);
+    }
   }
 
-  private checkDateRange(startDate: Number, endDate: Number, currDate: Number) {
+  private checkDateRange(startDate: number, endDate: number, currDate: number) {
     return startDate <= currDate && endDate >= currDate;
   }
 
@@ -100,14 +146,12 @@ export class SfHomePageComponent {
       if (this.checkDateRange(retData.startDate, retData.endDate, new Date().getTime())) {
         this._announcementData.push(retData);
       }
-
     }
   }
 
   navigateToLink(url: string){
     if (url) window.open(this.sanitizeURL(url), "_blank");
   }
-
 }
 
 

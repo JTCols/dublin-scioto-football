@@ -1,6 +1,6 @@
 import {AfterViewInit, Component} from '@angular/core';
 import {SfApiService} from "../../services/api/sf-api.service";
-import {DatePipe, NgForOf} from "@angular/common";
+import {DatePipe, NgForOf, NgIf} from "@angular/common";
 
 @Component({
   standalone: true,
@@ -8,26 +8,32 @@ import {DatePipe, NgForOf} from "@angular/common";
   templateUrl: './sf-storied-rivals.component.html',
   imports: [
     NgForOf,
-    DatePipe
+    DatePipe,
+    NgIf
   ],
   styleUrls: ['./sf-storied-rivals.component.scss']
 })
-export class SfStoriedRivalsComponent implements AfterViewInit{
+export class SfStoriedRivalsComponent implements AfterViewInit {
   storiedRivalsJSON: any[] = [];
+  loading = true;
+  
   constructor(private apiService: SfApiService) {
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
+    this.loading = true;
     this.apiService.getStoriedRivals().subscribe(response => {
-      if (response.items && response.items.length > 1) {
+      if (response.items && response.items.length > 0) {
         this.storiedRivalsJSON = response.items;
       }
+      this.loading = false;
+    }, error => {
+      console.error('Error loading storied rivals data:', error);
+      this.loading = false;
     });
   }
 
-  openYouTube(videoId: string){
+  openYouTube(videoId: string) {
     window.open('https://www.youtube.com/watch?v=' + videoId, '_blank');
   }
-
-
 }

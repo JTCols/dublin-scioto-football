@@ -1,7 +1,11 @@
 <div class="grid-container">
+  <div class="grid-header">
+    <h2>Website Links</h2>
+    <p class="grid-description">Useful links related to Dublin Scioto Football</p>
+  </div>
+  
   <ag-grid-angular
-    style="width: calc(100% - 10px); height: calc(100% - 200px)"
-    class="ag-theme-alpine"
+    class="ag-theme-alpine links-grid"
     [columnDefs]="columnDefs"
     [defaultColDef]="defaultColDef"
     [rowData]="_linkData"

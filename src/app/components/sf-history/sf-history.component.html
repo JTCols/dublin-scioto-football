@@ -1,20 +1,23 @@
-<ul class="sub-nav">
-  <li>
-    <a [routerLink]="['results']">Game Results</a>
-  </li>
-  <li>
-    <a [routerLink]="['alumni']">Alumni</a>
-  </li>
-  <li>
-    <a [routerLink]="['irish-nfl']">Irish in the NFL</a>
-  </li>
-  <li>
-    <a [routerLink]="['records-awards']">Records and Awards</a>
-  </li>
-  <li>
-    <a [routerLink]="['stats']">Stats</a>
-  </li>
+<div class="history-container">
+  <ul class="sub-nav">
+    <li>
+      <a [routerLink]="['results']" routerLinkActive="active-link">Game Results</a>
+    </li>
+    <li>
+      <a [routerLink]="['alumni']" routerLinkActive="active-link">Alumni</a>
+    </li>
+    <li>
+      <a [routerLink]="['irish-nfl']" routerLinkActive="active-link">Irish in the NFL</a>
+    </li>
+    <li>
+      <a [routerLink]="['records-awards']" routerLinkActive="active-link">Records and Awards</a>
+    </li>
+    <li>
+      <a [routerLink]="['stats']" routerLinkActive="active-link">Stats</a>
+    </li>
+  </ul>
 
-</ul>
-
-<router-outlet></router-outlet>
+  <div class="content-container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

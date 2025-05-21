@@ -1,10 +1,113 @@
+/* Dublin Scioto Colors */
+$scioto-green: #006633;
+$scioto-silver: #C0C0C0;
+$background-light: #f8f9fa;
+$text-dark: #343a40;
+$border-color: #dee2e6;
 
-:host{
-  .google-calendar{
-    padding: 15px;
-    border: 0;
-    height: calc(100% - 40px);
-    width: calc(100% - 40px);
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+}
+
+.calendar-container {
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  
+  .calendar-description {
+    background-color: $background-light;
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid $border-color;
+    
+    p {
+      margin: 0;
+      font-size: 1.1rem;
+      line-height: 1.5;
+      color: $text-dark;
+    }
+  }
+  
+  .calendar-wrapper {
+    position: relative;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 2rem;
+    height: 700px;
+    
+    .loading-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.9);
+      z-index: 10;
+      
+      p {
+        margin-top: 1rem;
+        color: $scioto-green;
+        font-weight: 500;
+      }
+    }
+    
+    .google-calendar {
+      border: none;
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+      
+      &.loading {
+        opacity: 0.3;
+      }
+    }
+  }
+  
+  .calendar-instructions {
+    background-color: $background-light;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid $border-color;
+    
+    ul {
+      margin: 0;
+      padding-left: 1.5rem;
+      
+      li {
+        margin-bottom: 0.5rem;
+        line-height: 1.5;
+        color: $text-dark;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .calendar-container {
+    padding: 1rem;
+    
+    .calendar-wrapper {
+      height: 500px;
+    }
   }
 }
 

@@ -1,0 +1,11 @@
+{
+  "/api": {
+    "target": "https://www.sciotofootball.com",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "logLevel": "debug"
+  }
+} 

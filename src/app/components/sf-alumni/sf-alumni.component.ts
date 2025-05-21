@@ -2,13 +2,17 @@ import {Component, ViewChild} from '@angular/core';
 import {SfApiService} from "../../services/api/sf-api.service";
 import {CellClickedEvent, ColDef, GridReadyEvent} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
+import {FormsModule} from "@angular/forms";
+import {NgIf} from "@angular/common";
 
 @Component({
   standalone: true,
   selector: 'app-sf-alumni',
   templateUrl: './sf-alumni.component.html',
   imports: [
-    AgGridAngular
+    AgGridAngular,
+    FormsModule,
+    NgIf
   ],
   styleUrls: ['./sf-alumni.component.scss']
 })
@@ -18,22 +22,26 @@ export class SfAlumniComponent {
   @ViewChild(AgGridAngular) agGrid!: AgGridAngular;
 
   public alumData: any[] = [];
+  
+  // For quick filtering
+  public quickFilterText: string = '';
 
   // Each Column Definition results in one Column.
   public columnDefs: ColDef[] = [
-    {field: 'number'},
-    {field: 'firstName'},
-    {field: 'lastName'},
-    {field: 'gradYear'},
-    {field: 'position'},
-    {field: 'collegeSport'},
-    {field: 'college'}
+    {field: 'number', headerName: 'Number', width: 100, filter: 'agNumberColumnFilter'},
+    {field: 'firstName', headerName: 'First Name', width: 120},
+    {field: 'lastName', headerName: 'Last Name', width: 120},
+    {field: 'gradYear', headerName: 'Grad Year', width: 110, filter: 'agNumberColumnFilter'},
+    {field: 'position', headerName: 'Position', width: 120},
+    {field: 'collegeSport', headerName: 'College Sport', width: 140},
+    {field: 'college', headerName: 'College', width: 180}
   ];
 
   // DefaultColDef sets props common to all Columns
   public defaultColDef: ColDef = {
     sortable: true,
     filter: true,
+    resizable: true
   };
 
   constructor(private apiService: SfApiService) {
@@ -54,7 +62,15 @@ export class SfAlumniComponent {
    * @private
    */
   private processAlumData(alumRawData: string[], api: any): void {
-    for (let alumItem of alumRawData) {
+    // Clear existing data
+    this.alumData = [];
+    
+    // Skip header row if present
+    const dataRows = alumRawData.length > 0 && 
+                    (alumRawData[0][1] === 'firstName' || alumRawData[0][1] === 'First Name') 
+                    ? alumRawData.slice(1) : alumRawData;
+                    
+    for (let alumItem of dataRows) {
       let retData: any = {
         number: alumItem[0],
         firstName: alumItem[1],
@@ -66,15 +82,24 @@ export class SfAlumniComponent {
       };
       this.alumData.push(retData);
     }
-    api.setRowData(this.alumData);
+    api.setGridOption('rowData', this.alumData);
   }
 
+  // Quick filter function
+  onFilterTextBoxChanged() {
+    this.agGrid.api.setGridOption('quickFilterText', this.quickFilterText);
+  }
 
   //load data from sever
   onGridReady(params: GridReadyEvent) {
-    this.apiService.getAlumni().subscribe(response => {
-      if (response.values && response.values.length > 1) {
-        this.processAlumData(response.values, params.api)
+    this.apiService.getAlumni().subscribe({
+      next: (response) => {
+        if (response.values && response.values.length > 1) {
+          this.processAlumData(response.values, params.api);
+        }
+      },
+      error: (err) => {
+        console.error('Error loading alumni data:', err);
       }
     });
   }
@@ -88,6 +113,4 @@ export class SfAlumniComponent {
   clearSelection(): void {
     this.agGrid.api.deselectAll();
   }
-
-
 }

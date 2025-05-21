@@ -1,17 +1,216 @@
+// Dublin Scioto Colors
+$scioto-green: #006633;
+$scioto-silver: #C0C0C0;
+$nfl-blue: #013369;
 
-.player-table {
-  width: 100%;
+.irish-nfl-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-  .image-cell {
-    width: 100px;
+.section-header {
+  text-align: center;
+  margin-bottom: 30px;
+  
+  h2 {
+    color: $scioto-green;
+    font-size: 32px;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  
+  .section-description {
+    color: #555;
+    font-size: 18px;
+  }
+}
 
+.player-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.player-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .player-image {
+    aspect-ratio: 3/4;
+    height: auto;
+    overflow: hidden;
+    background-color: #f5f5f5;
+    position: relative;
+    
     img {
-      max-width: 125px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: all 0.5s ease;
+      transform-origin: center;
+      image-rendering: -webkit-optimize-contrast; /* Sharper images on webkit */
+      backface-visibility: hidden; /* Prevents pixelation during transitions */
+      
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+  
+  .player-info {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    
+    .player-name {
+      color: $nfl-blue;
+      font-size: 22px;
+      margin-bottom: 15px;
+      font-weight: 600;
+      position: relative;
+      padding-bottom: 12px;
+      
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50px;
+        height: 3px;
+        background-color: $scioto-green;
+      }
+    }
+    
+    .player-details {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      
+      .detail-item {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: baseline;
+        
+        .label {
+          font-weight: 600;
+          color: #555;
+          min-width: 80px;
+          margin-right: 5px;
+        }
+        
+        .value {
+          color: #333;
+        }
+      }
+      
+      .player-links {
+        margin-top: auto;
+        padding-top: 20px;
+        display: flex;
+        gap: 10px;
+        
+        .btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 8px 16px;
+          border-radius: 6px;
+          font-weight: 500;
+          text-decoration: none;
+          transition: all 0.2s ease;
+          border: none;
+          font-size: 14px;
+          
+          &.btn-stats {
+            background-color: $scioto-green;
+            color: white;
+            
+            &:hover {
+              background-color: darken($scioto-green, 10%);
+            }
+          }
+          
+          &.btn-wiki {
+            background-color: $scioto-silver;
+            color: #333;
+            
+            &:hover {
+              background-color: darken($scioto-silver, 10%);
+            }
+          }
+        }
+      }
     }
   }
 }
 
+.nfl-logo-container {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+  
+  .nfl-logo {
+    max-width: 120px;
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
 
-.nfl-logo{
-  max-width: 100%;
+// Enhanced responsive adjustments
+@media (min-width: 1200px) {
+  .player-cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .player-card .player-image {
+    aspect-ratio: 3/4;
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 769px) {
+  .player-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .player-card .player-image {
+    aspect-ratio: 4/5;
+  }
+}
+
+@media (max-width: 768px) and (min-width: 481px) {
+  .player-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .player-card .player-image {
+    aspect-ratio: 4/5;
+  }
+}
+
+@media (max-width: 480px) {
+  .player-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .player-card .player-image {
+    aspect-ratio: 4/3; /* Wider aspect ratio on mobile for better viewing */
+    max-height: 300px;
+  }
 }

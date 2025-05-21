@@ -1,23 +1,46 @@
-
 <h2 class="page-heading"> Roster</h2>
 
 <div>
 <!--  <img src="/assets/roster/varsityteamphoto2022.png" alt="Team photo" class="team-photo">-->
 </div>
 
-<div class="grid-container">
+<div class="search-container">
+  <mat-form-field appearance="outline">
+    <mat-label>Search Roster</mat-label>
+    <input matInput type="text" [(ngModel)]="searchText" (keyup)="applyFilter()" placeholder="Search by name, position, etc.">
+    <button 
+      *ngIf="searchText" 
+      matSuffix 
+      mat-icon-button 
+      aria-label="Clear" 
+      (click)="clearFilter()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
 
+<div class="grid-container">
   <ag-grid-angular
-    style="width: calc(100% - 10px); height: calc(100% - 200px)"
+    style="width: calc(100% - 10px); height: auto; min-height: 400px;"
     class="ag-theme-alpine"
     [columnDefs]="columnDefs"
     [defaultColDef]="defaultColDef"
-    [rowData]="_rosterData"
+    [rowData]="paginatedRosterData"
     [rowSelection]="'multiple'"
     [animateRows]="true"
     (gridReady)="onGridReady($event)"
     (cellClicked)="onCellClicked($event)"
     domLayout='autoHeight'
   ></ag-grid-angular>
+  
+  <mat-paginator
+    class="roster-paginator"
+    [length]="totalRows"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    [pageIndex]="pageIndex"
+    (page)="onPageChange($event)"
+    aria-label="Select page of roster entries">
+  </mat-paginator>
 </div>
 

@@ -27,17 +27,32 @@ export class SfLinksComponent {
   public columnDefs: ColDef[] = [
     {
       field: 'title',
+      headerName: 'Link Title',
+      flex: 1,
+      minWidth: 200,
+      autoHeight: true,
+      wrapText: true,
       cellRenderer: params => {
-        return '<a href="' + params.data.link + '" target="_blank">' + params.value + '</a>';
+        return '<a href="' + params.data.link + '" target="_blank" rel="noopener">' + params.value + '</a>';
       }
     },
-    {field: 'description'}
+    {
+      field: 'description', 
+      headerName: 'Description',
+      flex: 2,
+      minWidth: 300,
+      autoHeight: true,
+      wrapText: true
+    }
   ];
 
   // DefaultColDef sets props common to all Columns
   public defaultColDef: ColDef = {
     sortable: true,
     filter: true,
+    resizable: true,
+    autoHeight: true,
+    wrapText: true
   };
 
   constructor(private apiService: SfApiService, private host: ElementRef, private zone: NgZone) {
@@ -73,6 +88,9 @@ export class SfLinksComponent {
   }
 
   private processLinkData(linkRawData: any[], api: any): void {
+    // Clear existing data
+    this._linkData = [];
+    
     for (let link of linkRawData) {
       let retData: any = {
         link: link[0],
@@ -81,16 +99,28 @@ export class SfLinksComponent {
       };
       this._linkData.push(retData);
     }
-    api.setRowData(this._linkData);
+    api.setGridOption('rowData', this._linkData);
+    
+    // Ensure rows adjust to content after data is loaded
+    setTimeout(() => {
+      api.resetRowHeights();
+    }, 0);
   }
 
 
   //load data from sever
   onGridReady(params: GridReadyEvent) {
+    // We don't need to call setDomLayout as it's set in the HTML template
+    
     this.apiService.getLinks().subscribe(response => {
       if (response.values && response.values.length > 1) {
         this.processLinkData(response.values, params.api)
         this.sizeToFit();
+        
+        // Ensure grid refreshes to adjust heights
+        setTimeout(() => {
+          params.api.resetRowHeights();
+        }, 0);
       }
     });
   }

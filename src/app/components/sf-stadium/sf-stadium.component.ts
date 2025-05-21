@@ -1,19 +1,22 @@
 import {Component} from '@angular/core';
 import {NgImageSliderModule} from "ng-image-slider";
+import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   standalone: true,
   selector: 'app-sf-stadium',
   templateUrl: './sf-stadium.component.html',
   imports: [
-    NgImageSliderModule
+    NgImageSliderModule,
+    CommonModule,
+    MatIconModule
   ],
   styleUrls: [
     './sf-stadium.component.scss'
   ]
 })
 export class SfStadiumComponent {
-
   imageObject: Array<object> = [
     {
       image: 'assets/stadium/DS-football-stad.jpg',
@@ -67,13 +70,7 @@ export class SfStadiumComponent {
     }
   ];
 
+  constructor() {}
 
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
-
+  ngOnInit(): void {}
 }

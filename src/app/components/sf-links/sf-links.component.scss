@@ -1,0 +1,100 @@
+// Dublin Scioto Colors
+$scioto-green: #006633;
+$scioto-silver: #C0C0C0;
+
+.grid-container {
+  padding: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  
+  .grid-header {
+    margin-bottom: 20px;
+    
+    h2 {
+      color: $scioto-green;
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+    
+    .grid-description {
+      color: #666;
+      font-size: 16px;
+      margin: 0;
+    }
+  }
+  
+  ag-grid-angular {
+    width: 100%;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    height: auto !important; // Ensure grid takes auto height
+    
+    ::ng-deep {
+      // Ensure grid body takes auto height
+      .ag-root, .ag-body, .ag-body-viewport, .ag-center-cols-container {
+        height: auto !important;
+        overflow: visible !important;
+      }
+      
+      // Increase font size for all cells
+      .ag-cell, .ag-header-cell-text {
+        font-size: 16px;
+      }
+      
+      // Style cells for auto height
+      .ag-cell {
+        padding: 0;
+        line-height: 1.5;
+        color: #333;
+        height: auto !important;
+        white-space: normal !important;
+        overflow: visible !important;
+      }
+      
+      // Header cells
+      .ag-header-cell {
+        padding: 0;
+        font-weight: 600;
+        color: #333;
+      }
+      
+      .ag-header {
+        background-color: #f5f5f5;
+      }
+      
+      .ag-row {
+        &:hover {
+          background-color: #f9f9f9;
+        }
+        
+        a {
+          color: $scioto-green;
+          text-decoration: none;
+          font-weight: 500;
+          font-size: 16px;
+          
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        // Set auto height for rows
+        height: auto !important;
+        min-height: 0 !important;
+      }
+
+      // Override AG Grid's default row height calculation
+      .ag-cell-wrap-text {
+        white-space: normal;
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .grid-container {
+    padding: 0;
+  }
+}

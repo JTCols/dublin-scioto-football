@@ -16,37 +16,93 @@ ul {
     .link-title {
       font-weight: bold;
       font-size: 18px;
-      padding: 4px;
+      padding: 10px;
       display: flex;
       flex-direction: column;
       width: 100%;
+      background: linear-gradient(to bottom, #d5d5d5, #c0c0c0);
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 10px;
+      color: #333;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+      box-sizing: border-box;
+      overflow: hidden;
 
       .game-info{
         flex-grow: 1;
+        width: 100%;
+        padding: 10px 8px 10px 0;
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 4px;
+        margin-bottom: 6px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
       }
 
       .game-note{
         justify-self: flex-end;
-        //margin: 0 5px 0 15px;
+        width: 100%;
         font-size: 16px;
         font-weight: normal;
-        padding: 10px 0;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.05);
+        border-radius: 4px;
+        border-left: 3px solid #006633;
+        margin-bottom: 6px;
+        box-sizing: border-box;
+      }
+      
+      // Style for the score display
+      & > span:last-child {
+        width: 100%;
+        padding: 8px;
+        background-color: rgba(0, 102, 51, 0.1);
+        border-radius: 4px;
+        font-weight: bold;
+        color: #006633;
+        text-align: center;
+        box-sizing: border-box;
       }
     }
 
     .game-content {
-      .game-image {
-        img {
-          height: auto;
-          width: 400px;
-          border-radius: 6px
-        }
-      }
-
       .info-panel {
         display: flex;
         flex-direction: row;
-
+        flex-wrap: wrap;
+        
+        .image-container {
+          width: 80% !important;
+          aspect-ratio: 16 / 9 !important;
+          margin: 0 auto !important;
+          border-radius: 12px !important;
+          border: 2px solid #006633 !important;
+          overflow: hidden;
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2), 0 0 0 2px rgba(192, 192, 192, 0.3) !important;
+          
+          &:nth-child(2) {
+            margin-right: 0;
+          }
+          
+          .game-image {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              border-radius: 12px;
+              transform: translateZ(0); // Force hardware acceleration
+            }
+          }
+        }
+        
         .action-panel {
           display: flex;
           flex-direction: row;
@@ -54,30 +110,95 @@ ul {
           padding: 6px;
 
           ul {
-            width: 125px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
 
             li {
               border: 0;
+              margin: 0 4px 8px 0;
 
               button {
-                //width: 30px;
-                width: 100px;
                 display: flex;
+                align-items: center;
+                min-width: 130px;
+                width: 130px;
+                max-width: 150px;
                 text-align: left;
-                align-content: center;
-                padding-left: 0;
-
-                mat-icon, img {
-                  margin-right: 5px;
+                padding: 8px 12px;
+                margin: 4px 0;
+                background-color: #f8f8f8;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                transition: all 0.2s ease;
+                cursor: pointer;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                outline: none;
+                height: 44px;
+                box-sizing: border-box;
+                
+                &:hover:not([disabled]) {
+                  background-color: #e9f0e9;
+                  border-color: #bbd6bb;
+                  transform: translateY(-1px);
+                  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+                }
+                
+                &:focus:not([disabled]) {
+                  background-color: #e9f0e9;
+                  border-color: #2e7d32;
+                  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.3);
+                }
+                
+                &:active:not([disabled]) {
+                  background-color: #d9e8d9;
+                  transform: translateY(1px);
+                  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+                }
+                
+                &[disabled] {
+                  opacity: 0.6;
+                  cursor: not-allowed;
+                }
+                
+                .icon-container, mat-icon {
+                  flex-shrink: 0;
+                  min-width: 30px;
                   width: 30px;
-                }
-
-                span {
+                  height: 30px;
                   display: flex;
-                  align-content: center;
-                  height: 24px;
-                  flex-wrap: wrap;
+                  justify-content: center;
+                  align-items: center;
+                  margin-right: 10px;
                 }
+                
+                .icon-container .social-icon {
+                  width: 25px;
+                  height: 25px;
+                  border-radius: 4px;
+                }
+                
+                /* Re-add icon color styles */
+                mat-icon {
+                  color: #2e7d32; /* Green color for default icons */
+                }
+                
+                span {
+                  display: inline-block;
+                  flex: 1;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  font-size: 14px;
+                  font-weight: 500;
+                  padding-right: 2px;
+                }
+              }
+
+              /* Add specific style for Instagram button */
+              button:has(+ span:contains("Instagram")) {
+                width: 120px; /* Wider for Instagram text */
               }
             }
           }
@@ -98,41 +219,56 @@ ul {
       }
 
       .game-content {
-        .game-image {
-          img {
-            display: flex;
-            margin: 0 auto;
-            width: 100%;
-            height: auto;
-          }
-        }
-
         .info-panel {
           display: flex;
           flex-direction: column;
           width: 100%;
+          
+          .image-container {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            margin-right: 0;
+            margin-bottom: 15px;
+            
+            &:nth-child(2) {
+              margin-top: 0;
+            }
+          }
 
           .action-panel {
             display: flex;
             flex-direction: column;
-
+            width: 100%;
+            align-items: center;
+            
             ul {
-              padding: 0;
               display: flex;
-              width: auto;
+              flex-wrap: nowrap;
               justify-content: center;
-
+              overflow-x: auto;
+              -webkit-overflow-scrolling: touch;
+              padding: 5px 0;
+              width: 100%; /* Ensure full width */
+              margin-bottom: 10px; /* Add spacing below button row */
+              
               li {
+                flex: 0 0 auto;
+                margin: 0 4px;
+                
                 button {
-                  width: 30px;
-                  display: flex;
-                  text-align: center;
-                  padding: 0;
+                  min-width: 40px;
+                  width: 40px;
+                  height: 40px;
+                  padding: 8px;
+                  justify-content: center;
+                  
                   span {
                     display: none;
-                    //text-align: center;
-                    //align-content: inherit;
-                    //height: auto;
+                  }
+                  
+                  .icon-container, mat-icon {
+                    margin-right: 0;
                   }
                 }
               }
@@ -154,4 +290,296 @@ ul {
 
     }
   }
+
+  /* Add subtle scroll indicator for mobile */
+  .action-panel ul {
+    position: relative;
+    
+    /* Subtle fade at edges to indicate scrollable content */
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 20px;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    &::before {
+      left: 0;
+      background: linear-gradient(to right, rgba(255,255,255,0.8), rgba(255,255,255,0));
+    }
+    
+    &::after {
+      right: 0;
+      background: linear-gradient(to left, rgba(255,255,255,0.8), rgba(255,255,255,0));
+    }
+  }
+}
+
+.loading-indicator, .empty-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  min-height: 200px;
+  border: 1px solid #ccc;
+  margin: 20px;
+  border-radius: 8px;
+  
+  p {
+    font-size: 16px;
+    color: #666;
+    text-align: center;
+  }
+}
+
+.loading-indicator {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.empty-state {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.primary-button, .secondary-button {
+  background-color: #e8f5e9;
+  border-color: #81c784;
+  font-weight: 500;
+  
+  &:hover:not([disabled]) {
+    background-color: #c8e6c9;
+    border-color: #66bb6a;
+  }
+  
+  mat-icon {
+    color: #2e7d32;
+  }
+}
+
+.secondary-button {
+  background-color: #e3f2fd;
+  border-color: #90caf9;
+  
+  &:hover:not([disabled]) {
+    background-color: #bbdefb;
+    border-color: #64b5f6;
+  }
+  
+  mat-icon {
+    color: #1976d2;
+  }
+}
+
+.instagram-button {
+  .icon-container {
+    flex-shrink: 0;
+    min-width: 30px;
+  }
+}
+
+// Responsive image scaling
+.info-panel {
+  width: 100% !important;
+  overflow: hidden;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.image-container {
+  width: 80% !important;
+  aspect-ratio: 16 / 9 !important;
+  margin: 0 auto !important;
+  border-radius: 12px !important;
+  border: 2px solid #006633 !important;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2), 0 0 0 2px rgba(192, 192, 192, 0.3) !important;
+}
+
+// Style specifically for background images in schedule
+.info-panel .image-container {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(192, 192, 192, 0.5) !important;
+    border-color: #007a3d !important;
+  }
+}
+
+// Make sure images scale down at smaller screens
+@media (max-width: 768px) {
+  .image-container {
+    width: 90% !important;
+    max-width: 600px !important;
+  }
+}
+
+@media (max-width: 500px) {
+  .image-container {
+    width: 95% !important;
+    max-width: 450px !important;
+  }
+}
+
+// Fallback for browsers that don't support aspect-ratio
+@supports not (aspect-ratio: 16 / 9) {
+  .image-container {
+    position: relative !important;
+    
+    &::before {
+      content: "";
+      display: block;
+      padding-top: 56.25%; // 9/16 * 100% for 16:9 aspect ratio
+    }
+  }
+}
+
+// Schedule Header Styling
+.schedule-header {
+  text-align: center;
+  margin-bottom: 25px;
+  padding-top: 10px;
+  
+  h2 {
+    color: #006633;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header-decoration {
+    height: 4px;
+    width: 100px;
+    background: linear-gradient(to right, #006633, #C0C0C0);
+    margin: 0 auto;
+    border-radius: 2px;
+  }
+}
+
+@media (max-width: 768px) {
+  .schedule-header {
+    h2 {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .schedule-header {
+    h2 {
+      font-size: 1.3rem;
+    }
+    
+    .header-decoration {
+      width: 80px;
+    }
+  }
+}
+
+// Dublin Scioto Colors
+$scioto-green: #006633;
+$scioto-silver: #C0C0C0;
+$active-tab-shadow: 0 3px 10px rgba(0, 102, 51, 0.2);
+
+.tabs-container {
+  width: 100%;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.sub-nav {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 10px auto 0;
+  padding: 0;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 1200px;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 0;
+  }
+
+  li {
+    margin: 0;
+    position: relative;
+    z-index: 1;
+    border: none;
+    padding: 0;
+    
+    a {
+      display: block;
+      padding: 12px 20px;
+      background: linear-gradient(to bottom, #f8f8f8, #efefef);
+      border: 1px solid #ddd;
+      border-bottom-color: transparent;
+      color: #555;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      border-radius: 8px 8px 0 0;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+      cursor: pointer;
+      
+      &:hover {
+        background: linear-gradient(to bottom, #fff, #f8f8f8);
+        color: $scioto-green;
+      }
+
+      &.active-link {
+        background: white;
+        border-bottom-color: white;
+        color: $scioto-green;
+        font-weight: 600;
+        box-shadow: $active-tab-shadow;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 70%;
+          height: 3px;
+          background-color: $scioto-green;
+          border-radius: 3px 3px 0 0;
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments for tabs
+@media (max-width: 768px) {
+  .sub-nav {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    flex-wrap: nowrap;
+    gap: 5px;
+    
+    li a {
+      padding: 10px 15px;
+      font-size: 14px;
+    }
+  }
+}
+
+ul.navigation {
+
 }

@@ -1,149 +1,142 @@
-<h2>Dublin Scioto Stadium</h2>
-<div class="carousel-container">
-  <ng-image-slider
-    [images]="imageObject"
-    [infinite]="true"
-    [autoSlide]="{interval: 3, stopOnHover: false}"
-    [imagePopup]="true"
-    [showArrow]="true"
-    [manageImageRatio]="false"
-    [imageSize]="{ width: '33%', space: 10}"
-    #nav>
-  </ng-image-slider>
-</div>
+<div class="stadium-page">
+  <h2>Dublin Scioto Stadium</h2>
+  
+  <div class="carousel-container">
+    <ng-image-slider
+      [images]="imageObject"
+      [infinite]="true"
+      [autoSlide]="{interval: 5, stopOnHover: true}"
+      [imagePopup]="true"
+      [showArrow]="true"
+      [manageImageRatio]="true"
+      [imageSize]="{ width: '33%', space: 15}"
+      #nav>
+    </ng-image-slider>
+  </div>
 
-<div class="info">
-
-
-  <div class="info-container">
-
-    <div class="info-item">
-      <span class="info-title">
-        Map Link
-      </span>
-      <span class="info-display">
-        <a target="_new"
-           href="https://www.google.com/maps/search/dublin+scioto+football+field/@40.1223114,-83.1005981,16.19z">
-          4000 Hard Road <br>
-          Dublin, Ohio 43016
-        </a>
-      </span>
-    </div>
-    <div class="info-item">
-      <span class="info-title">
-        Weather
-      </span>
-      <span class="info-display">
-        <a target="_new" href="https://weather.com/weather/today/l/43016:4:US">
-          Local Weather
-        </a>
-      </span>
-    </div>
-    <div class="info-item">
-      <span class="info-title">
-       Owner
-      </span>
-      <span class="info-display">
-        Dublin City Schools
-      </span>
-    </div>
-    <div class="info-item">
-      <span class="info-title">
-       County
-      </span>
-      <span class="info-display">
-        Franklin
-      </span>
-    </div>
-    <div class="info-item">
-      <span class="info-title">
-       Seating Capacity
-      </span>
-      <span class="info-display">
-       5000
-      </span>
-    </div>
-    <div class="info-item">
-      <span class="info-title">
-       Stadium Type
-      </span>
-      <span class="info-display">
-        High School
-      </span>
-    </div>
-    <div class="info-item">
-      <span class="info-title">
-       Year Opened
-      </span>
-      <span class="info-display">
-        1995
-      </span>
+  <div class="stadium-overview">
+    <div class="stadium-address">
+      <a target="_blank" href="https://www.google.com/maps/search/dublin+scioto+football+field/@40.1223114,-83.1005981,16.19z">
+        <mat-icon>location_on</mat-icon> 4000 Hard Road, Dublin, Ohio 43016
+      </a>
+      <a target="_blank" href="https://weather.com/weather/today/l/43016:4:US" class="weather-link">
+        <mat-icon>wb_sunny</mat-icon> Local Weather
+      </a>
     </div>
   </div>
 
-  <div class="info-container">
+  <div class="info">
+    <div class="info-container">
+      <h3>General Information</h3>
+      
+      <div class="info-item">
+        <span class="info-title">
+          Owner
+        </span>
+        <span class="info-display">
+          Dublin City Schools
+        </span>
+      </div>
+      
+      <div class="info-item">
+        <span class="info-title">
+          County
+        </span>
+        <span class="info-display">
+          Franklin
+        </span>
+      </div>
+      
+      <div class="info-item">
+        <span class="info-title">
+          Seating Capacity
+        </span>
+        <span class="info-display">
+          5000
+        </span>
+      </div>
+      
+      <div class="info-item">
+        <span class="info-title">
+          Stadium Type
+        </span>
+        <span class="info-display">
+          High School
+        </span>
+      </div>
+      
+      <div class="info-item">
+        <span class="info-title">
+          Year Opened
+        </span>
+        <span class="info-display">
+          1995
+        </span>
+      </div>
 
-    <div class="info-item">
-      <span class="info-title">
-       Video Scoreboard
-      </span>
-      <span class="info-display">
-        No
-      </span>
+      <div class="info-item">
+        <span class="info-title">
+          Home Teams
+        </span>
+        <span class="info-display">
+          Dublin Scioto Irish
+        </span>
+      </div>
     </div>
-    <div class="info-item">
-      <span class="info-title">
-       Press Box Elevator
-      </span>
-      <span class="info-display">
-        No
-      </span>
+
+    <div class="info-container">
+      <h3>Facility Details</h3>
+      
+      <div class="info-item">
+        <span class="info-title">
+          Video Scoreboard
+        </span>
+        <span class="info-display">
+          No
+        </span>
+      </div>
+      
+      <div class="info-item">
+        <span class="info-title">
+          Press Box Elevator
+        </span>
+        <span class="info-display">
+          No
+        </span>
+      </div>
+      
+      <div class="info-item">
+        <span class="info-title">
+          Wheelchair Access
+        </span>
+        <span class="info-display">
+          Good
+        </span>
+      </div>
+      
+      <div class="info-item">
+        <span class="info-title">
+          Playing Surface
+        </span>
+        <span class="info-display">
+          Artificial
+        </span>
+      </div>
+
+      <div class="info-item">
+        <span class="info-title">
+          Sports
+        </span>
+        <span class="info-display">
+          <ul>
+            <li>Football</li>
+            <li>Track</li>
+            <li>Soccer</li>
+            <li>Lacrosse</li>
+          </ul>
+        </span>
+      </div>
     </div>
-    <div class="info-item">
-      <span class="info-title">
-       Wheelchair Access
-      </span>
-      <span class="info-display">
-        good
-      </span>
-    </div>
-    <div class="info-item">
-      <span class="info-title">
-       Playing Surface
-      </span>
-      <span class="info-display">
-        Artificial
-      </span>
-    </div>
-    <div class="info-item">
-      <span class="info-title">
-       Home Teams
-      </span>
-      <span class="info-display">
-        Dublin Scioto Irish
-      </span>
-    </div>
-
-    <div class="info-item">
-      <span class="info-title">
-       Sports
-      </span>
-      <span class="info-display">
-        <ul>
-          <li>Football</li>
-          <li>Track</li>
-          <li>Soccer</li>
-          <li>Lacrosse</li>
-        </ul>
-      </span>
-    </div>
-
-
-
-
-
   </div>
-
-
 </div>
 

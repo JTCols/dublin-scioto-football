@@ -10,6 +10,7 @@ This is an Angular-based project designed for building a web application related
 - [Development Server](#development-server)
 - [Build](#build)
 - [Running Unit Tests](#running-unit-tests)
+- [Environment Configuration](#environment-configuration)
 - [Dependencies](#dependencies)
 - [Troubleshooting](#troubleshooting)
 - [License](#license)
@@ -82,6 +83,36 @@ npm test
 ```
 
 This will run all tests through Karma and display the results.
+
+---
+
+## Environment Configuration
+
+The application uses environment files to manage configuration settings like API keys and service endpoints. This helps with security and environment-specific settings.
+
+### Environment Files
+
+- `src/environments/environment.ts` - Development environment settings
+- `src/environments/environment.prod.ts` - Production environment settings
+
+### Available Configuration Parameters
+
+- `production`: Boolean flag indicating production mode
+- `googleSheetsApiKey`: API key for Google Sheets access
+- `youtubeApiKey`: API key for YouTube API access
+- `sheetsBaseUrl`: Base URL for Google Sheets API
+- `sciotofootballBaseUrl`: Base URL for Scioto Football services
+
+### Usage
+
+Environment values are automatically selected based on the build configuration:
+
+```typescript
+import { environment } from '../environments/environment';
+
+// Access environment variables
+const apiKey = environment.googleSheetsApiKey;
+```
 
 ---
 
